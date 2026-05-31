@@ -1,0 +1,14 @@
+[
+  {
+    "id": "q1a",
+    "text": "What is france's capital and what is their famous tower called?",
+    "maxMarks": 2,
+    "type":"short",
+    "answers": [
+      "Paris",
+      "Eiffel Tower"
+    ]
+
+  }
+  
+]
