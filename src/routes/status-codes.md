@@ -7,9 +7,9 @@
 ## Client Errors 🟡
 
 ### 400 Bad Request
-### 404 Not Found
 ### 401 Unauthorized
 ### 403 Forbidden
+### 404 Not Found
 
 ## Server Errors 🔴
 

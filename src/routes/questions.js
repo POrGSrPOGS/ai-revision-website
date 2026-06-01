@@ -1,28 +1,44 @@
 const { Router } = require("express");
-const questions = require("../controllers/questions");
+const questions = require("../services/questionReader.js");
+const { markAnswer } = require("../services/marking.js");
+const questionsData = require("../data/questionsData.json");
+const { selectQuestion } = require("../services/questionEngine.js")
 
 const router = Router();
 
-router.get("/:id", (request, response) => {
-    const question = questions.getQuestion(request.params.id);
-    const displayInfo = questions.getDisplayInfo()
+router.get("/", (request, response) => {
+    const question = selectQuestion(questionsData);
 
     if (!question) {
         return response.status(404).json("Question not found");
-    }
+    };
 
-    response.status(200).json(displayInfo)
+    const displayInfo = questions.getDisplayInfo(question);
+
+    response.status(200).json(displayInfo);
 });
 
-const { markAnswer } = require("../services/marking");
+router.get("/:id", (request, response) => {
+    const question = questions.getQuestion(request.params.id);
 
-router.post("/:id/answer", (req, res) => {
-  const { id } = req.params;
-  const { answer } = req.body;
+    if (!question) {
+        return response.status(404).json("Question not found");
+    };
 
-  const result = markAnswer(id, answer);
+    const displayInfo = questions.getDisplayInfo(question);
 
-  res.json(result);
+    response.status(200).json(displayInfo);
+});
+
+
+
+router.post("/:id/answer", (request, response) => {
+  const { id } = request.params;
+  const { answer } = request.body;
+
+  const marks = markAnswer(id, answer);
+
+  response.status(200).json(marks);
 });
 
 

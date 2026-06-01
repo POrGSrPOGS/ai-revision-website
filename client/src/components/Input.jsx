@@ -1,4 +1,4 @@
-export default function Input({ placeholder, value, onChange, onSubmit }) {
+export default function Input({ placeholder, value, onChange, onSubmit, buttonText }) {
   return (
     <>
       <input
@@ -7,7 +7,7 @@ export default function Input({ placeholder, value, onChange, onSubmit }) {
         value={value}
         onChange={onChange}
       />
-      <button onClick={onSubmit}>Submit</button>
+      <button onClick={onSubmit}>{buttonText}</button>
     </>
   );
 }

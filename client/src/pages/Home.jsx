@@ -3,27 +3,67 @@ import Input from "../components/Input";
 
 export default function Home({ isDark, onToggleDark }) {
   const [answer, setAnswer] = useState("");
-  const [question, setQuestion] = useState(null);
+  const [currentQuestion, setQuestion] = useState(null);
+  const [currentMark, setMark] = useState(null);
+  const [buttonText, setButtonText] = useState("Submit")
 
-  const handleSubmit = () => {
-    console.log("User answered:", answer);
+
+  let feedbackText;
+
+  if (currentMark !== null) {
+    if (currentMark == currentQuestion.maxMarks) {
+      feedbackText = "✅"; {/* Full marks*/}
+
+    } else {
+      feedbackText = "❌"; {/* Partial/No marks*/}
+    }
+
+    feedbackText += ` [${currentMark}/${currentQuestion.maxMarks}]`
+    }
+
+  const loadQuestion = async () => {
+    try {
+      const response = await fetch("api/questions/");
+      const question = await response.json();
+      setQuestion(question);
+      console.log("Question Information: ", question);
+      setMark(null);
+    } catch (error) {
+      console.error("Failed to load question:", error);
+    }
   };
 
   useEffect(() => {
-    const loadQuestion = async () => {
-      try {
-        const res = await fetch("api/questions/q1a");
-        const response = await res.json();
-        const questionData = response.data;
-        setQuestion(questionData);
-        console.log("Question Information: ", questionData);
-      } catch (err) {
-        console.error("Failed to load question:", err);
-      }
-    };
-
     loadQuestion();
   }, []);
+
+  const handleClick = async () => {
+    if (buttonText === "Submit"){
+
+      console.log("User answered:", answer);
+
+      const response = await fetch(`/api/questions/${currentQuestion.id}/answer`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          answer: answer
+        })
+      });
+
+      const mark = await response.json();
+      console.log(`${mark} marks`);
+      setMark(mark);
+
+      setButtonText("Next");
+
+    } else {
+      setAnswer("")
+      loadQuestion()
+      setButtonText("Submit");
+    };
+  };
 
   return (
     <>
@@ -32,15 +72,21 @@ export default function Home({ isDark, onToggleDark }) {
       </button>
       <main>
         <h1>
-          Question: {question ? question.text : "Loading..."}
+          Question: {currentQuestion ? `${currentQuestion.text} [${currentQuestion.maxMarks} Marks]` : "Loading..."}
         </h1>
 
         <Input
           placeholder="Enter your answer"
           value={answer}
           onChange={(event) => setAnswer(event.target.value)}
-          onSubmit={handleSubmit}
+          onSubmit={handleClick}
+          buttonText = {buttonText}
         />
+
+        <h2>
+          {feedbackText}
+        </h2>  
+        {/* ✅ ❌  */}
       </main>
     </>
   );
