@@ -4,79 +4,71 @@
     "text": "What is France's capital?",
     "maxMarks": 1,
     "type": "short",
-    "answers": [
-      "Paris"
-    ]
+    "answers": ["Paris"],
+    "subject": "General",
+    "topic": "Academic"
   },
   {
     "id": "q2",
     "text": "Name the three states of matter.",
     "maxMarks": 3,
     "type": "short",
-    "answers": [
-      "Solid",
-      "Liquid",
-      "Gas"
-    ]
+    "answers": ["Solid", "Liquid", "Gas"],
+    "subject": "General",
+    "topic": "Academic"
   },
   {
     "id": "q3",
     "text": "What is the chemical symbol for gold?",
     "maxMarks": 1,
     "type": "short",
-    "answers": [
-      "Au"
-    ]
+    "answers": ["Au"],
+    "subject": "General",
+    "topic": "Academic"
   },
   {
     "id": "q4",
     "text": "Name the four countries of the United Kingdom.",
     "maxMarks": 4,
     "type": "short",
-    "answers": [
-      "England",
-      "Scotland",
-      "Wales",
-      "Northern Ireland"
-    ]
+    "answers": ["England", "Scotland", "Wales", "Northern Ireland"],
+    "subject": "General",
+    "topic": "Academic"
   },
   {
     "id": "q5",
     "text": "What process do plants use to make food?",
     "maxMarks": 1,
     "type": "short",
-    "answers": [
-      "Photosynthesis"
-    ]
+    "answers": ["Photosynthesis"],
+    "subject": "General",
+    "topic": "Academic"
   },
   {
     "id": "q6",
     "text": "Name two programming languages commonly used for web development.",
     "maxMarks": 2,
     "type": "short",
-    "answers": [
-      "JavaScript",
-      "HTML"
-    ]
+    "answers": ["JavaScript", "HTML"],
+    "subject": "General",
+    "topic": "Academic"
   },
   {
     "id": "q8",
     "text": "What is 12 × 8?",
     "maxMarks": 1,
     "type": "short",
-    "answers": [
-      "96"
-    ]
+    "answers": ["96"],
+    "subject": "General",
+    "topic": "Academic"
   },
   {
     "id": "q9",
     "text": "Name the three primary colours of light.",
     "maxMarks": 3,
     "type": "short",
-    "answers": [
-      "Red",
-      "Green",
-      "Blue"
-    ]
+    "answers": ["Red", "Green", "Blue"],
+    "subject": "General",
+    "topic": "Academic"
   }
 ]

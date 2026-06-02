@@ -2,10 +2,15 @@
 
 const questionsReader = require("./questionReader.js");
 
-const getRandomQuestion = (questions) => {
+const getRandomQuestion = (questions, excludedQuestions) => {
+    
     if (!questions) {
         return null
     }
+
+    excludedQuestions.forEach(question => {
+        
+    });
 
     const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
     return randomQuestion
