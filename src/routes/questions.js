@@ -6,26 +6,34 @@ const router = Router();
 
 router.get("/", (request, response) => {
     const filters = request.query;
-    console.log(`User wants a question set with filters:`)
-    console.log(filters)
-    const questions = reader.getQuestions(filters)
+    console.log({filters})
+    const questions = reader.getQuestionIds(filters)
 
-    const question = engine.getRandomQuestion(questions, [request.session.currentQuestion])
+    const excluded = []
+
+    currentQuestionId = request.session.currentQuestionId
+    if (currentQuestionId){
+        excluded.push(currentQuestionId)
+    }
+
+    const questionId = engine.getRandomQuestionId(questions, excluded)
     //request.session.currentQuestionSet = questions
-    request.session.currentQuestion = question.id
-
+    request.session.currentQuestionId = questionId
     if (!questions) {
         return response.status(404).json("No question(s) found");
     };
 
+    question = reader.getQuestion(questionId)
+
     const displayInfo = reader.getDisplayInfo(question);
+    console.log({displayInfo})
 
     response.status(200).json(displayInfo);
 });
 
 router.post("/answer", (request, response) => {
 
-    const id = request.session.currentQuestion;
+    const id = request.session.currentQuestionId;
     const { answer } = request.body;
 
 

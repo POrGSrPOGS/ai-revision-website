@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Input from "../components/Input";
 
 export default function Home({ isDark, onToggleDark }) {
@@ -6,6 +6,7 @@ export default function Home({ isDark, onToggleDark }) {
   const [currentQuestion, setQuestion] = useState(null);
   const [currentMark, setMark] = useState(null);
   const [buttonText, setButtonText] = useState("Submit")
+  const hasLoaded = useRef(false);
 
 
   let feedbackText;
@@ -23,7 +24,7 @@ export default function Home({ isDark, onToggleDark }) {
 
   const loadQuestion = async () => {
     try {
-      const response = await fetch("api/questions/");
+      const response = await fetch("api/questions?id=q3");
       const question = await response.json();
       setQuestion(question);
       console.log("Question Information: ", question);
@@ -34,6 +35,8 @@ export default function Home({ isDark, onToggleDark }) {
   };
 
   useEffect(() => {
+    if (hasLoaded.current) return;
+    hasLoaded.current = true;
     loadQuestion();
   }, []);
 

@@ -10,8 +10,8 @@ const getQuestion = (id) => {
 };
 
 const satisfiesFilters = (question, filters) => {
-    if (filters.length !== 0){
-        for (const attribute of filters){
+    if (filters){
+        for (const attribute in filters){
             actualValue = question[attribute]
             correctValue = filters[attribute]
 
@@ -24,7 +24,7 @@ const satisfiesFilters = (question, filters) => {
     return true
 }
 
-const getQuestions = (filters) => {
+const getQuestionIds = (filters) => {
 
     if (filters === {}){
         return questionsBank
@@ -42,6 +42,7 @@ const getQuestions = (filters) => {
 }
 
 const getDisplayInfo = (question) => {
+
     const displayInfo = {};
     questionDisplayInfo.forEach((attribute) => {
         displayInfo[attribute] = question[attribute];
@@ -50,4 +51,4 @@ const getDisplayInfo = (question) => {
     return displayInfo
 }
 
-module.exports = { getQuestion, getQuestions, getDisplayInfo };
+module.exports = { getQuestion, getQuestionIds, getDisplayInfo };

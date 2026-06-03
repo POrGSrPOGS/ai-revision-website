@@ -2,12 +2,12 @@
 
 const questionsReader = require("./questionReader.js");
 
-const getRandomQuestion = (questions, excluded) => {
+const getRandomQuestionId = (questions, excluded) => {
 
-    var included;
+    var included = [];
 
     if (excluded.length === 0){
-        const included = questions.filter(id => {
+        included = questions.filter(id => {
             return !excluded.includes(id);
         });
 
@@ -23,4 +23,4 @@ const getRandomQuestion = (questions, excluded) => {
     return included[randomIndex];
 };
 
-module.exports = { getRandomQuestion };
+module.exports = { getRandomQuestionId };
