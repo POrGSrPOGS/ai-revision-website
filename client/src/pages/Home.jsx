@@ -13,10 +13,13 @@ export default function Home({ isDark, onToggleDark }) {
 
   if (currentMark !== null) {
     if (currentMark == currentQuestion.maxMarks) {
-      feedbackText = "✅"; {/* Full marks*/}
+      feedbackText = "🟢"; // Full marks
+
+    } else if (currentMark > 0){
+      feedbackText = "🟠"; // Partial marks
 
     } else {
-      feedbackText = "❌"; {/* Partial/No marks*/}
+      feedbackText = "🔴"; // No marks
     }
 
     feedbackText += ` [${currentMark}/${currentQuestion.maxMarks}]`
@@ -24,7 +27,7 @@ export default function Home({ isDark, onToggleDark }) {
 
   const loadQuestion = async () => {
     try {
-      const response = await fetch("api/questions?id=q3");
+      const response = await fetch("api/questions?");
       const question = await response.json();
       setQuestion(question);
       console.log("Question Information: ", question);

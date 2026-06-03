@@ -26,7 +26,7 @@ const satisfiesFilters = (question, filters) => {
 
 const getQuestionIds = (filters) => {
 
-    if (filters === {}){
+    if (!filters){
         return questionsBank
     }
 
