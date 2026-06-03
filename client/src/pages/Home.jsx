@@ -42,7 +42,7 @@ export default function Home({ isDark, onToggleDark }) {
 
       console.log("User answered:", answer);
 
-      const response = await fetch(`/api/questions/${currentQuestion.id}/answer`, {
+      const response = await fetch(`/api/questions/answer`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -5,26 +5,36 @@ const questionsConfig = require("../config/questionsReading.json");
 const { questionDisplayInfo } = questionsConfig;
 
 const getQuestion = (id) => {
-    const question = questionsData.find(q => q.id === id);
+    const question = questionsBank.find(q => q.id === id);
     return question;
 };
 
+const satisfiesFilters = (question, filters) => {
+    for (const attribute of filters){
+        actualValue = question[attribute]
+        correctValue = filters[attribute]
+
+        if (actualValue !== correctValue){
+            return false
+        }
+    }
+
+    return true
+}
+
 const getQuestions = (filters) => {
 
-    const questions = questionsBank.filter(question => {
-        const entries = Object.entries(filters);
+    if (filters === {}){
+        return questionsBank
+    }
 
-        return entries.every(filter => {
-            const attribute = filter[0];
-            const value = filter[1];
+    const questions = [];
 
-            if (!value) {
-                return true;
-            }
-
-            return question[key] === value;
-        });
-    });
+    for (const question of questionsBank){
+        if (satisfiesFilters(question, filters)){
+            questions.push(question.id)
+        }
+    }
 
     return questions
 }

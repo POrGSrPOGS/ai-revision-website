@@ -2,22 +2,25 @@
 
 const questionsReader = require("./questionReader.js");
 
-const getRandomQuestion = (questions, excludedQuestions) => {
-    
-    if (!questions) {
-        return null
+const getRandomQuestion = (questions, excluded) => {
+
+    var included;
+
+    if (excluded.length === 0){
+        const included = questions.filter(id => {
+            return !excluded.includes(id);
+        });
+
+        if (included.length === 0) {
+            included = excluded;
+        }
+
+    } else {
+        included = excluded
     }
 
-    excludedQuestions.forEach(question => {
-        
-    });
+    const randomIndex = Math.floor(Math.random() * included.length);
+    return included[randomIndex];
+};
 
-    const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-    return randomQuestion
-}
-
-const selectQuestion = (questions) => {
-    return getRandomQuestion(questions)
-}
-
-module.exports = { selectQuestion };
+module.exports = { getRandomQuestion };
