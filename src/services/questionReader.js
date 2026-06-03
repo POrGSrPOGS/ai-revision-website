@@ -10,12 +10,14 @@ const getQuestion = (id) => {
 };
 
 const satisfiesFilters = (question, filters) => {
-    for (const attribute of filters){
-        actualValue = question[attribute]
-        correctValue = filters[attribute]
+    if (filters.length !== 0){
+        for (const attribute of filters){
+            actualValue = question[attribute]
+            correctValue = filters[attribute]
 
-        if (actualValue !== correctValue){
-            return false
+            if (actualValue !== correctValue){
+                return false
+            }
         }
     }
 
