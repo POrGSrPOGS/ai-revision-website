@@ -11,7 +11,7 @@
   {
     "id": "q2",
     "text": "Name the three states of matter.",
-    "maxMarks": 3,
+    "maxMarks": 20,
     "type": "short",
     "answers": ["Solid", "Liquid", "Gas"],
     "subject": "General",
