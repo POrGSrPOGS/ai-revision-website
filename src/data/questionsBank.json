@@ -39,9 +39,9 @@
   {
     "id": "q5",
     "text": "What does HTML stand for?",
-    "maxMarks": 2,
+    "maxMarks": 1,
     "type": "short",
-    "answers": ["HyperText Markup Language", "HTML"],
+    "answers": ["HyperText Markup Language"],
     "subject": "Programming",
     "topic": "Web Development"
   },
