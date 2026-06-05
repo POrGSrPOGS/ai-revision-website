@@ -9,6 +9,11 @@ const getQuestion = (id) => {
     return question;
 };
 
+const getAnswers = (id) =>  {
+    const question = getQuestion(id)
+    return question.answers
+}
+
 const satisfiesFilters = (question, filters) => {
     if (filters){
         for (const attribute in filters){
@@ -51,4 +56,4 @@ const getDisplayInfo = (question) => {
     return displayInfo
 }
 
-module.exports = { getQuestion, getQuestionIds, getDisplayInfo };
+module.exports = { getQuestion, getQuestionIds, getDisplayInfo, getAnswers };

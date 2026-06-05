@@ -11,13 +11,13 @@ router.get("/", (request, response) => {
 
     const excluded = []
 
-    currentQuestionId = request.session.currentQuestionId
+    currentQuestionId = request.session.currentQuestionId;
     if (currentQuestionId){
-        excluded.push(currentQuestionId)
-    }
+        excluded.push(currentQuestionId);
+    };
 
     const questionId = engine.getRandomQuestionId(questions, excluded)
-    //request.session.currentQuestionSet = questions
+
     request.session.currentQuestionId = questionId
     if (!questions) {
         return response.status(404).json("No question(s) found");
@@ -28,7 +28,7 @@ router.get("/", (request, response) => {
     const displayInfo = reader.getDisplayInfo(question);
     console.log({displayInfo})
 
-    response.status(200).json(displayInfo);
+    response.status(200).json({displayInfo});
 });
 
 router.post("/answer", (request, response) => {
@@ -43,8 +43,9 @@ router.post("/answer", (request, response) => {
     });
 
     const marks = markAnswer(id, answer);
+    const possibleAnswers = reader.getAnswers(id)
 
-    response.status(200).json(marks);
+    response.status(200).json({marks, possibleAnswers});
 });
 
 

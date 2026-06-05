@@ -4,36 +4,57 @@ import Input from "../components/Input";
 export default function Home({ isDark, onToggleDark }) {
   const [answer, setAnswer] = useState("");
   const [currentQuestion, setQuestion] = useState(null);
+
   const [currentMark, setMark] = useState(null);
+  const [correctAnswers, setCorrectAnswers] = useState(null)
+
   const [buttonText, setButtonText] = useState("Submit")
   const hasLoaded = useRef(false);
 
 
-  let feedbackText;
+  let markFeedback = "";
+  let correctAnswersFeedback = "";
 
   if (currentMark !== null) {
     if (currentMark == currentQuestion.maxMarks) {
-      feedbackText = "🟢"; // Full marks
+      markFeedback = "🟢"; // Full marks
 
     } else if (currentMark > 0){
-      feedbackText = "🟠"; // Partial marks
+      markFeedback = "🟠"; // Partial marks
 
     } else {
-      feedbackText = "🔴"; // No marks
+      markFeedback = "🔴"; // No marks
     }
 
-    feedbackText += ` [${currentMark}/${currentQuestion.maxMarks}]`
+    markFeedback += ` [${currentMark}/${currentQuestion.maxMarks}]`
     }
+
+    if (correctAnswers?.length) {
+      correctAnswersFeedback =
+        "\nCorrect answers:\n" +
+        correctAnswers.map(answer => `•  ${answer}`).join("\n");
+    }
+
+
+
+
+
+
+  
 
   const loadQuestion = async () => {
     try {
       const response = await fetch("api/questions?");
-      const question = await response.json();
+      const data = await response.json();
+      const question = data.displayInfo
+
+      console.log({data});
+
       setQuestion(question);
-      console.log("Question Information: ", question);
       setMark(null);
+
     } catch (error) {
-      console.error("Failed to load question:", error);
+      console.error("Failed to load question:");
     }
   };
 
@@ -58,10 +79,14 @@ export default function Home({ isDark, onToggleDark }) {
         })
       });
 
-      const mark = await response.json();
-      console.log(`${mark} marks`);
-      setMark(mark);
+      const data = await response.json();
+      const marks = data.marks
+      const possibleAnswers = data.possibleAnswers
+      
+      console.log({data});
 
+      setCorrectAnswers(possibleAnswers)
+      setMark(marks);
       setButtonText("Next");
 
     } else {
@@ -90,9 +115,9 @@ export default function Home({ isDark, onToggleDark }) {
         />
 
         <h2>
-          {feedbackText}
+          {markFeedback}
         </h2>  
-        {/* ✅ ❌  */}
+        <h3 style={{ whiteSpace: "pre-wrap" }}> {correctAnswersFeedback} </h3>
       </main>
     </>
   );

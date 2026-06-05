@@ -59,7 +59,7 @@
     "text": "What is a function in programming?",
     "maxMarks": 3,
     "type": "short",
-    "answers": ["A reusable block of code", "Reusable block of code that performs a task"],
+    "answers": ["Reusable", "Executes", "Runs", "Code"],
     "subject": "Programming",
     "topic": "Concepts"
   }
