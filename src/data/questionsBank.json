@@ -53,14 +53,5 @@
     "answers": ["//"],
     "subject": "Programming",
     "topic": "Basics"
-  },
-  {
-    "id": "q7",
-    "text": "What is a function in programming?",
-    "maxMarks": 3,
-    "type": "short",
-    "answers": ["Reusable", "Executes", "Runs", "Code"],
-    "subject": "Programming",
-    "topic": "Concepts"
   }
 ]
