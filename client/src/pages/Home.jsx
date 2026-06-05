@@ -35,13 +35,6 @@ export default function Home({ isDark, onToggleDark }) {
         correctAnswers.map(answer => `•  ${answer}`).join("\n");
     }
 
-
-
-
-
-
-  
-
   const loadQuestion = async () => {
     try {
       const response = await fetch("api/questions");
@@ -52,6 +45,7 @@ export default function Home({ isDark, onToggleDark }) {
 
       setQuestion(question);
       setMark(null);
+      setCorrectAnswers(null);
 
     } catch (error) {
       console.error("Failed to load question:");
