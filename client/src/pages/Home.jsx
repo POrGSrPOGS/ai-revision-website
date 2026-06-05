@@ -44,7 +44,7 @@ export default function Home({ isDark, onToggleDark }) {
 
   const loadQuestion = async () => {
     try {
-      const response = await fetch("api/questions?");
+      const response = await fetch("api/questions");
       const data = await response.json();
       const question = data.displayInfo
 
