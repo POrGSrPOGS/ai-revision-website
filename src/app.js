@@ -28,4 +28,12 @@ app.use(
 
 app.use("/api", routes);
 
+const clientDistPath = path.join(__dirname, "../client/dist");
+
+app.use(express.static(clientDistPath));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(clientDistPath, "index.html"));
+});
+
 module.exports = app;
