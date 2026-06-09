@@ -1,13 +1,6 @@
 @import "tailwindcss";
 
-
-
-[data-theme="dark"] {
-  --bg-color: #000000;
-  --text-color: #11c700;
-}
-
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: #000000;
+  color: #11c700;
 }

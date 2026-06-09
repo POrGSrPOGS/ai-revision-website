@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import components from "../components";
 const { Input, Toggle, Question, Marks } = components;
 
-export default function Home({ isDark, onToggleDark }) {
+export default function Home({}) {
   const [answer, setAnswer] = useState("");
   const [currentQuestion, setQuestion] = useState(null);
 
@@ -67,11 +67,7 @@ export default function Home({ isDark, onToggleDark }) {
 
   return (
     <>
-      <Toggle
-        label={isDark ? "Light Mode" : "Dark Mode"}
-        value={isDark}
-        onChange={onToggleDark}
-      />
+
       <div className="flex justify-center min-h-screen pt-20">
         <main className="flex flex-col items-center gap-4">
           <Question question={currentQuestion} />
