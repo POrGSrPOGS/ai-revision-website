@@ -4,7 +4,7 @@
   "description": "Scalable Node.js web application baseplate",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run build --prefix client && node server.js",
     "server": "node server.js",
     "dev": "concurrently \"nodemon server.js\" \"npm run dev --prefix client\"",
     "dev:server": "nodemon server.js",
