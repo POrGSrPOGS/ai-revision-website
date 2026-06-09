@@ -21,9 +21,9 @@ export default function Marks({ marks }) {
             {`[ ${mark} / ${maxMark} ] ${feedback}!`}
             
             <ul className= "text-xl mt-10 font-mono text-green-600">
-                Possible Answers:
+                <div className = "mb-4"> Possible Answers: </div>
                 {correctAnswers.map((correctAnswer, index) => (
-                    <li key={index}>{` "${correctAnswer}" [1] `}</li>
+                    <li key={index}>{`• "${correctAnswer}" [1] `}</li>
 
                 ))}
 
