@@ -1,52 +1,38 @@
 const { Router } = require("express");
-const reader = require("../services/questionReader.js");
-const { markAnswer } = require("../services/marking.js");
-const engine = require("../services/questionEngine.js")
 const router = Router();
 
+const marking = require("../services/answers/marking.js");
+const reader = require("../services/questions/reader.js");
+const engine = require("../services/questions/engine.js");
+const sessions = require("../services/data/sessions.js");
+
 router.get("/", (request, response) => {
-    const filters = request.query;
-    console.log({filters})
-    const questions = reader.getQuestionIds(filters)
+  const filters = request.query;
+  console.log({ filters });
 
-    const excluded = []
+  const questions = reader.getQuestionIds(filters);
 
-    currentQuestionId = request.session.currentQuestionId;
-    if (currentQuestionId){
-        excluded.push(currentQuestionId);
-    };
+  const excluded = [];
+  const questionId = sessions.getNewQuestionId(request, questions, excluded);
 
-    const questionId = engine.getRandomQuestionId(questions, excluded)
+  const question = reader.getQuestion(questionId);
+  const displayInfo = reader.getDisplayInfo(question);
 
-    request.session.currentQuestionId = questionId
-    if (!questions) {
-        return response.status(404).json("No question(s) found");
-    };
-
-    question = reader.getQuestion(questionId)
-
-    const displayInfo = reader.getDisplayInfo(question);
-    console.log({displayInfo})
-
-    response.status(200).json({displayInfo});
+  console.log({ displayInfo });
+  response.status(200).json({ displayInfo });
 });
 
 router.post("/answer", (request, response) => {
+  const questionId = sessions.get(request, "currentQuestionId");
+  const body = request.body;
+  const answer = body.answer;
 
-    const id = request.session.currentQuestionId;
-    const { answer } = request.body;
+  console.log({ questionId, answer });
 
+  const mark = marking.markAnswer(questionId, answer);
+  const correctAnswers = reader.getAnswers(questionId);
 
-    console.log({
-        id,
-        answer
-    });
-
-    const marks = markAnswer(id, answer);
-    const possibleAnswers = reader.getAnswers(id)
-
-    response.status(200).json({marks, possibleAnswers});
+  response.status(200).json({ mark, correctAnswers });
 });
-
 
 module.exports = router;

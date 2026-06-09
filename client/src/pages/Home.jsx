@@ -1,51 +1,25 @@
 import { useState, useEffect, useRef } from "react";
-import Input from "../components/Input";
+
+import components from "../components";
+const { Input, Toggle, Question, Marks } = components;
 
 export default function Home({ isDark, onToggleDark }) {
   const [answer, setAnswer] = useState("");
   const [currentQuestion, setQuestion] = useState(null);
 
-  const [currentMark, setMark] = useState(null);
-  const [correctAnswers, setCorrectAnswers] = useState(null)
+  const [marks, setMarks] = useState(null);
 
-  const [buttonText, setButtonText] = useState("Submit")
-  const hasLoaded = useRef(false);
-
-
-  let markFeedback = "";
-  let correctAnswersFeedback = "";
-
-  if (currentMark !== null) {
-    if (currentMark == currentQuestion.maxMarks) {
-      markFeedback = "🟢"; // Full marks
-
-    } else if (currentMark > 0){
-      markFeedback = "🟠"; // Partial marks
-
-    } else {
-      markFeedback = "🔴"; // No marks
-    }
-
-    markFeedback += ` [${currentMark}/${currentQuestion.maxMarks}]`
-    }
-
-    if (correctAnswers?.length) {
-      correctAnswersFeedback =
-        "\nCorrect answers:\n" +
-        correctAnswers.map(answer => `•  ${answer}`).join("\n");
-    }
+  const [isAnswering, setIsAnswering] = useState(true);
 
   const loadQuestion = async () => {
     try {
       const response = await fetch("api/questions");
       const data = await response.json();
-      const question = data.displayInfo
+      const question = data.displayInfo;
 
-      console.log({data});
-
+      console.log({ data });
+      
       setQuestion(question);
-      setMark(null);
-      setCorrectAnswers(null);
 
     } catch (error) {
       console.error("Failed to load question:");
@@ -53,66 +27,70 @@ export default function Home({ isDark, onToggleDark }) {
   };
 
   useEffect(() => {
-    if (hasLoaded.current) return;
-    hasLoaded.current = true;
     loadQuestion();
   }, []);
 
   const handleClick = async () => {
-    if (buttonText === "Submit"){
-
+    if (!marks) {
       console.log("User answered:", answer);
 
       const response = await fetch(`/api/questions/answer`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          answer: answer
-        })
+          answer: answer,
+        }),
       });
 
       const data = await response.json();
-      const marks = data.marks
-      const possibleAnswers = data.possibleAnswers
-      
-      console.log({data});
 
-      setCorrectAnswers(possibleAnswers)
-      setMark(marks);
-      setButtonText("Next");
+      const maxMark = currentQuestion.maxMark
+      const mark = data.mark;
+      const correctAnswers = data.correctAnswers;
+
+      setMarks({
+        maxMark: maxMark,
+        mark: mark,
+        correctAnswers: correctAnswers
+      })
+
+      console.log({ data });
 
     } else {
-      setAnswer("")
-      loadQuestion()
-      setButtonText("Submit");
-    };
+      setMarks(null)
+      setAnswer("");
+      loadQuestion();
+    }
   };
 
   return (
     <>
-      <button className="theme-toggle" onClick={onToggleDark}>
-        {isDark ? "☀️ Light" : "🌙 Dark"}
-      </button>
-      <main>
-        <h1>
-          Question: {currentQuestion ? `${currentQuestion.text} [${currentQuestion.maxMarks} Marks]` : "Loading..."}
-        </h1>
+      <Toggle
+        label={isDark ? "Light Mode" : "Dark Mode"}
+        value={isDark}
+        onChange={onToggleDark}
+      />
+      <div className="flex justify-center min-h-screen pt-20">
+        <main className="flex flex-col items-center gap-4">
+          <Question question={currentQuestion} />
 
-        <Input
-          placeholder="Enter your answer"
-          value={answer}
-          onChange={(event) => setAnswer(event.target.value)}
-          onSubmit={handleClick}
-          buttonText = {buttonText}
-        />
+          <Input
+            placeholder="Enter your answer"
+            value={answer}
+            onChange={(event) => setAnswer(event.target.value)}
+            onSubmit={handleClick}
+            buttonText={!marks ? "Submit" : "Next"}
+            size="lx"
+          />
 
-        <h2>
-          {markFeedback}
-        </h2>  
-        <h3 style={{ whiteSpace: "pre-wrap" }}> {correctAnswersFeedback} </h3>
-      </main>
+          <Marks 
+            marks={marks}
+          />
+
+        </main>
+      </div>
     </>
   );
 }

@@ -11,9 +11,8 @@ routes.forEach((route) => {
   const routeName = routeInfo.name;
   const routeExtension = routeInfo.ext;
 
-  if (routeExtension !== ".js" || routeName === "index") {
-    return;
-  }
+  if (routeExtension !== ".js") return;
+  if (routeName === "index") return;
 
   router.use(`/${routeName}`, require(`./${routeName}`));
 });
