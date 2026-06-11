@@ -92,7 +92,7 @@
       "name": "MultipleChoice",
       "options": ["object", "array", "string"]
     },
-    "text": "What data type is used to store multiple values in a single variable?",
+    "text": "What data type is used to store an ordered list of values?",
     "maxMark": 1,
     "type": "short",
     "answers": ["array"],

@@ -19,8 +19,6 @@ export default function Marks({ marks }) {
         feedback = "Better luck next time"
         colour = "text-red-400"
     }
-
-    console.log(`text-3xl mt-5 font-bold text-${colour}`)
     
     return(
 
