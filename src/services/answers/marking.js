@@ -3,9 +3,9 @@
 const questionsReader = require("../questions/reader.js");
 
 const normalise = (text) => {
-  let normalised = text;
+  let normalised = "";
 
-  normalised = normalised.toLowerCase();
+  normalised = text.toLowerCase();
 
   return normalised;
 };
@@ -18,25 +18,25 @@ const markAnswer = (id, answer) => {
     return null;
   }
 
-  const maxMarks = question.maxMarks;
+  const maxMark = question.maxMark;
 
   const correctAnswers = question.answers;
 
-  let marks = 0;
+  let mark = 0;
 
   for (const correctAnswer of correctAnswers) {
     correctNormalisedAnswer = normalise(correctAnswer);
 
     if (normalisedAnswer.includes(correctNormalisedAnswer)) {
-      marks += 1;
+      mark += 1;
 
-      if (marks === maxMarks) {
+      if (mark === maxMark) {
         break;
       }
     }
   }
 
-  return marks;
+  return mark;
 };
 
 module.exports = { markAnswer };

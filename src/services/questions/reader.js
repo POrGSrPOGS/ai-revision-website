@@ -11,7 +11,7 @@ const getQuestion = (id) => {
 
 const getAnswers = (id) => {
   const question = getQuestion(id);
-  return question.answers;
+  return question?.answers;
 };
 
 const satisfiesFilters = (question, filters) => {

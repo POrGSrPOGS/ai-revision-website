@@ -1,90 +1,90 @@
 import { useState, useEffect, useRef } from "react";
 
 import components from "../components";
-const { Input, Toggle, Question, Marks } = components;
+const { Toggle, Question, Marks } = components;
+
+import questionFormats from "../components/questionFormats";
+
+import { loadQuestion, answerQuestion } from "../services/questions";
 
 export default function Home({}) {
+
+  // Initialisation
   const [answer, setAnswer] = useState("");
   const [currentQuestion, setQuestion] = useState(null);
-
   const [marks, setMarks] = useState(null);
 
-  const [isAnswering, setIsAnswering] = useState(true);
+  const QuestionComponent = questionFormats[currentQuestion?.format.name ?? "ShortAnswer"]
 
-  const loadQuestion = async () => {
-    try {
-      const response = await fetch("api/questions");
-      const data = await response.json();
-      const question = data.displayInfo;
 
-      console.log({ data });
+  // Functions
+
+  const displayQuestion = async(filters) => {
+    const data = await loadQuestion(filters);
+    console.log({ data });
+
+    const displayInfo = data.displayInfo;
+    setQuestion(displayInfo);
+  };
+
+  const submitAnswer = async() => {
+
+    console.log("User answered:", answer);
+
+    const data = await answerQuestion(answer);
+    console.log({ data });
+
+    const maxMark = currentQuestion.maxMark;
+    const mark = data.mark;
+    const correctAnswers = data.correctAnswers;
+
+    setMarks({
+      maxMark: maxMark,
+      mark: mark,
+      correctAnswers: correctAnswers,
+    });
+  };
+
+  const nextQuestion = async() => {
+    setMarks(null);
+    setAnswer("");
+    await displayQuestion();
+  };
+
+  const handleClick = async() => {
+    if (marks) {
+      await nextQuestion();
       
-      setQuestion(question);
-
-    } catch (error) {
-      console.error("Failed to load question:");
+    } else {
+      await submitAnswer();
     }
   };
+
+  // Effects
 
   useEffect(() => {
-    loadQuestion();
+    displayQuestion();
   }, []);
 
-  const handleClick = async () => {
-    if (!marks) {
-      console.log("User answered:", answer);
-
-      const response = await fetch(`/api/questions/answer`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          answer: answer,
-        }),
-      });
-
-      const data = await response.json();
-
-      const maxMark = currentQuestion.maxMark
-      const mark = data.mark;
-      const correctAnswers = data.correctAnswers;
-
-      setMarks({
-        maxMark: maxMark,
-        mark: mark,
-        correctAnswers: correctAnswers
-      })
-
-      console.log({ data });
-
-    } else {
-      setMarks(null)
-      setAnswer("");
-      loadQuestion();
-    }
-  };
+  // UI
 
   return (
     <>
-
       <div className="flex justify-center min-h-screen pt-20">
         <main className="flex flex-col items-center gap-4">
-          <Question question={currentQuestion} />
 
-          <Input
+          <Question question={currentQuestion} />
+          
+          <QuestionComponent
             placeholder="Enter your answer"
             value={answer}
-            onChange={(event) => setAnswer(event.target.value)}
+            onChange={setAnswer}
             onSubmit={handleClick}
-            buttonText={!marks ? "Submit" : "Next"}
-            size="lx"
+            buttonText={marks ? "Next" : "Submit"}
+            format={currentQuestion?.format}
           />
 
-          <Marks 
-            marks={marks}
-          />
-
+          <Marks marks={marks} />
         </main>
       </div>
     </>
