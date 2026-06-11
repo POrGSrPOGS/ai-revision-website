@@ -98,5 +98,17 @@
     "answers": ["array"],
     "subject": "Programming",
     "topic": "Basics"
+  },
+  {
+    "id": "q11",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "What are two words to initialise a variable/constant?",
+    "maxMark": 1,
+    "type": "short",
+    "answers": ["const","let"],
+    "subject": "Programming",
+    "topic": "Basics"
   }
 ]
