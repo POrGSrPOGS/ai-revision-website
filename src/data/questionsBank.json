@@ -32,7 +32,7 @@
     "text": "What function converts a string to an integer in JavaScript?",
     "maxMark": 1,
     "type": "short",
-    "answers": ["parseInt"],
+    "answers": ["parseInt", "Number", "+"],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -40,7 +40,7 @@
     "id": "q6",
     "format": {
       "name": "MultipleChoice",
-      "options": ["length()", ".length", "size()"]
+      "options": ["length()", "size()", ".length"]
     },
     "text": "How do you get the length of an array in JavaScript?",
     "maxMark": 1,
@@ -57,7 +57,7 @@
     "text": "What value represents 'nothing' in JavaScript?",
     "maxMark": 1,
     "type": "short",
-    "answers": ["null"],
+    "answers": ["null","undefined"],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -65,7 +65,7 @@
     "id": "q8",
     "format": {
       "name": "MultipleChoice",
-      "options": ["=", "===", "=>"]
+      "options": ["===", "=", "=>"]
     },
     "text": "Which operator checks both value and type equality in JavaScript?",
     "maxMark": 1,
