@@ -22,8 +22,9 @@ export default function Marks({ marks }) {
     
     return(
 
-        <div className = {`text-3xl mt-5 font-bold ${colour}`}>
-            {`[ ${mark} / ${maxMark} ] ${feedback}`}
+        <div className = {`text-3xl mt-5 font-bold ${colour} text-center`}>
+            <div className = "text-4xl"> {`${feedback}`} </div>
+            <div className= "mt-3 text-2xl"> {`[ ${mark} / ${maxMark} ] `} </div>
             
             <ul className= "text-xl mt-10 font-mono text-green">
                 <div className = "mb-4"> Correct Answers: </div>

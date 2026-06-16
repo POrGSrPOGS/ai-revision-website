@@ -3,21 +3,16 @@ import { useState, useMemo } from "react";
 export default function MultipleChoice({
   buttonText,
   placeholder,
-  value,
+  answers,
   onChange,
   onSubmit,
   format,
 }) {
-  const handleSubmit = (event) => {
-    // Decides how to get the user's answer and sends it to the server
-    event.preventDefault();
-    onSubmit(value);
-  };
 
   const getColour = (option) => {
     let colour = "";
 
-    if (value === option) {
+    if (answers.includes(option)) {
       colour = "border-green-300 bg-green-900";
     } else {
       colour = "border-green-500";
@@ -47,18 +42,29 @@ export default function MultipleChoice({
     return result;
   };
 
+  const updateChoices = (selectedOption) => {
+    const index = answers.indexOf(selectedOption)
+
+    if (index === -1) { // Option not already selected
+      return [...answers, selectedOption]
+    } else {
+      return answers.filter(option => option !== selectedOption)
+    }
+
+  }
+
   const options = useMemo(() => {
     return shuffleOptions(format.options);
   }, [format.options]);
 
   return (
-    <form className="flex flex-col items-center gap-8" onSubmit={handleSubmit}>
+    <form className="flex flex-col items-center gap-8" onSubmit={onSubmit}>
       <ul className="flex flex-wrap justify-center gap-4 text-xl font-mono text-green-600">
         {options.map((option) => (
           <li key={option}>
             <button
               type="button"
-              onClick={() => onChange(option)}
+              onClick={() => onChange(updateChoices(option))}
               className={`w-40 border p-2 text-center ${getColour(option)}`}
             >
               {option}
@@ -69,7 +75,6 @@ export default function MultipleChoice({
 
       <button
         type="submit"
-        disabled={!value}
         className="border border-green-500 px-4 py-1 text-xl"
       >
         {buttonText}

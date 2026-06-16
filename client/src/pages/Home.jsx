@@ -10,7 +10,7 @@ import { loadQuestion, answerQuestion } from "../services/questions";
 export default function Home({}) {
 
   // Initialisation
-  const [answer, setAnswer] = useState("");
+  const [answers, setAnswers] = useState([]);
   const [currentQuestion, setQuestion] = useState(null);
   const [marks, setMarks] = useState(null);
 
@@ -27,11 +27,11 @@ export default function Home({}) {
     setQuestion(displayInfo);
   };
 
-  const submitAnswer = async() => {
+  const submitAnswers = async() => {
 
-    console.log("User answered:", answer);
+    console.log("User answered:", answers);
 
-    const data = await answerQuestion(answer);
+    const data = await answerQuestion(answers);
     console.log({ data });
 
     const maxMark = currentQuestion.maxMark;
@@ -47,16 +47,17 @@ export default function Home({}) {
 
   const nextQuestion = async() => {
     setMarks(null);
-    setAnswer("");
+    setAnswers([]);
     await displayQuestion();
   };
 
-  const handleClick = async() => {
+  const handleClick = async(event) => {
+    event.preventDefault();
     if (marks) {
       await nextQuestion();
       
     } else {
-      await submitAnswer();
+      await submitAnswers();
     }
   };
 
@@ -77,8 +78,8 @@ export default function Home({}) {
           
           <QuestionComponent
             placeholder="Enter your answer"
-            value={answer}
-            onChange={setAnswer}
+            answers={answers}
+            onChange={setAnswers}
             onSubmit={handleClick}
             buttonText={marks ? "Next" : "Submit"}
             format={currentQuestion?.format}

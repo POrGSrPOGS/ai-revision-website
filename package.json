@@ -24,6 +24,10 @@
     "express-session": "^1.19.0",
     "helmet": "^7.1.0",
     "morgan": "^1.10.0",
+    "retext": "^9.0.0",
+    "retext-english": "^5.0.0",
+    "retext-keywords": "^8.0.2",
+    "retext-pos": "^5.0.0",
     "winston": "^3.13.0"
   },
   "devDependencies": {

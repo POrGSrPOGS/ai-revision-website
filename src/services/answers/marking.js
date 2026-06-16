@@ -1,6 +1,8 @@
 // Logic for marking user answers
 
-const questionsReader = require("../questions/reader.js");
+const { format } = require("morgan");
+const reader = require("../questions/reader.js");
+const extraction = require("./extraction.js");
 
 const normalise = (text) => {
   let normalised = "";
@@ -10,31 +12,57 @@ const normalise = (text) => {
   return normalised;
 };
 
-const markAnswer = (id, answer) => {
-  normalisedAnswer = normalise(answer);
+const formats = {
+  "ShortAnswer": (word, correctAnswers) => {
+    return correctAnswers.includes(word)
+  },
+  "MultipleChoice": (word, correctAnswers) => {
+    return correctAnswers.includes(word)
+  },
+  "GapFill": (word, correctAnswers, answerNumber) => {
+    return correctAnswers[answerNumber] == word
+  },
+}
 
-  const question = questionsReader.getQuestion(id);
+const markAnswer = (id, userAnswers) => {
+  const question = reader.getQuestion(id);
   if (!question) {
     return null;
   }
-
   const maxMark = question.maxMark;
-
   const correctAnswers = question.answers;
+
+  const formatName = question.format.name
+  const isCorrect = formats[formatName]
 
   let mark = 0;
 
-  for (const correctAnswer of correctAnswers) {
-    correctNormalisedAnswer = normalise(correctAnswer);
+  userAnswers.forEach((userAnswer, answerNumber) => {
+    userAnswer = extraction.normalise(userAnswer)
 
-    if (normalisedAnswer.includes(correctNormalisedAnswer)) {
-      mark += 1;
+    const words = userAnswer.split(" ")
+    console.log(words)
+    let wordAttempts = 0 // How many non filler words the user's message contained
 
-      if (mark === maxMark) {
-        break;
+    for (const word of words) {
+
+      if (isCorrect(word, correctAnswers, answerNumber)) {
+        mark += 1
+      } else if (extraction.isFillerWord(word)) {
+        continue; // Skip filler words
       }
+
+      if (wordAttempts >= maxMark) {
+        mark -= 1
+      }
+
+      wordAttempts += 1
+
     }
-  }
+  });
+
+  mark = Math.min(mark, maxMark)
+  mark = Math.max(mark, 0)
 
   return mark;
 };
