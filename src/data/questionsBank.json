@@ -138,7 +138,7 @@
     "id": "q14",
     "format": { "name": "ShortAnswer" },
     "text": "Name two primitive data types",
-    "maxMark": 5,
+    "maxMark": 2,
     "answers": ["string", "number"],
     "subject": "Programming",
     "topic": "Basics"
