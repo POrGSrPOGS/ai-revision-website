@@ -15,7 +15,7 @@ export default function ShortAnswer({
       <input
         type="text"
         placeholder={placeholder}
-        answers={answers[0]}
+        value={answers[0]||""}
         onChange={(event) => onChange([event.target.value])}
         className="border-1 border-green-700 text-xl p-1"
       />
