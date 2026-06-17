@@ -135,15 +135,6 @@
     "topic": "Arrays"
   },
   {
-    "id": "q14",
-    "format": { "name": "ShortAnswer" },
-    "text": "Name two primitive data types",
-    "maxMark": 2,
-    "answers": ["string", "number"],
-    "subject": "Programming",
-    "topic": "Basics"
-  },
-  {
     "id": "q15",
     "format": { "name": "MultipleChoice", "options": ["function", "method", "class", "loop"] },
     "text": "What defines reusable code?",
