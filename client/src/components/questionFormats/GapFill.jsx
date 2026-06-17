@@ -32,6 +32,8 @@ export default function GapFill({
     if (answerLength !== undefined) {
 
         const answerIndex = gapCount++;
+        
+        const width = Math.max(Math.round(answerLength*1.3), 3)
 
       return (
         <input
@@ -40,7 +42,7 @@ export default function GapFill({
           value={answers[answerIndex] || ""}
           onChange={(event) => onChange(setArrayIndex(answers, answerIndex, event.target.value))}
           className="border border-green-700 text-xl p-1 text-center font-bold"
-          style={{ width: `${Math.round(answerLength*1.3)}ch` }}
+          style={{ width: `${width}ch` }}
         />
       );
 
