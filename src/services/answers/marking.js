@@ -33,6 +33,10 @@ const markAnswer = (id, userAnswers) => {
   const maxMark = question.maxMark;
   const correctAnswers = question.answers;
 
+  correctAnswers.forEach((correctAnswer, index) => {
+    correctAnswers[index] = extraction.normalise(correctAnswer)
+  })
+
   const formatName = question.format.name
   const isCorrect = formats[formatName]
 
