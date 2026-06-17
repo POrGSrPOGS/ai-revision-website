@@ -16,7 +16,7 @@ export default function ShortAnswer({
         type="text"
         placeholder={placeholder}
         value={answers[0]||""}
-        onChange={(event) => onChange([event.target.value])}
+        onChange={(event) => onChange([...answers, event.target.value])}
         className="border-1 border-green-700 text-xl p-1"
       />
       <button type="submit" className="border border-green-500 px-4 py-1 text-xl">

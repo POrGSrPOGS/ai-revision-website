@@ -1,12 +1,14 @@
 [
+
   {
-    "id": "q11",
+    "id": "q3",
     "format": {
-      "name": "ShortAnswer"
+      "name": "GapFill",
+      "sentence": "The function, parseInt, can be used to convert a {gap-6} into a {gap-6}"
     },
-    "text": "What are two words to initialise a variable/constant?",
+    "text": "Fill in the gaps",
     "maxMark": 2,
-    "answers": ["const","let"],
+    "answers": ["string","number"],
     "subject": "Programming",
     "topic": "Basics"
   }

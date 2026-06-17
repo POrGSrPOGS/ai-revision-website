@@ -20,6 +20,7 @@ const formats = {
     return correctAnswers.includes(word)
   },
   "GapFill": (word, correctAnswers, answerNumber) => {
+    console.log(answerNumber)
     return correctAnswers[answerNumber] == word
   },
 }
