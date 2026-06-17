@@ -1,14 +1,211 @@
 [
-
+  {
+    "id": "q1",
+    "format": { "name": "GapFill", "sentence": "JavaScript uses {gap-9} to store values" },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "answers": ["variables"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q2",
+    "format": { "name": "MultipleChoice", "options": ["array", "object", "string", "number"] },
+    "text": "What best describes {} in JavaScript?",
+    "maxMark": 1,
+    "answers": ["object"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
   {
     "id": "q3",
+    "format": { "name": "GapFill", "sentence": "A loop repeats code {gap-8} times or until a condition is met" },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "answers": ["multiple"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q4",
+    "format": { "name": "ShortAnswer" },
+    "text": "Name two JavaScript variable keywords",
+    "maxMark": 2,
+    "answers": ["let", "const"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q5",
+    "format": { "name": "MultipleChoice", "options": ["push()", "pop()", "shift()", "slice()", "concat()"] },
+    "text": "Which method adds to the end of an array?",
+    "maxMark": 1,
+    "answers": ["push()"],
+    "subject": "Programming",
+    "topic": "Arrays"
+  },
+  {
+    "id": "q6",
     "format": {
       "name": "GapFill",
-      "sentence": "The function, parseInt, can be used to convert a {gap-6} into a {gap-6}"
+      "sentence": "HTML stands for {gap-10} {gap-6} {gap-8}"
     },
     "text": "Fill in the gaps",
-    "maxMark": 2,
-    "answers": ["string","number"],
+    "maxMark": 3,
+    "answers": ["HyperText", "Markup", "Language"],
+    "subject": "Programming",
+    "topic": "Web Basics"
+  },
+  {
+    "id": "q7",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["<p>", "<div>", "<span>", "<section>"]
+    },
+    "text": "Which tag is used for paragraphs?",
+    "maxMark": 1,
+    "answers": ["<p>"],
+    "subject": "Programming",
+    "topic": "HTML"
+  },
+  {
+    "id": "q8",
+    "format": {
+      "name": "GapFill",
+      "sentence": "CSS controls the {gap-5} of a webpage"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "answers": ["style"],
+    "subject": "Programming",
+    "topic": "Web Basics"
+  },
+  {
+    "id": "q9",
+    "format": { "name": "ShortAnswer" },
+    "text": "What does CSS stand for?",
+    "maxMark": 3,
+    "answers": ["Cascading Style Sheets"],
+    "subject": "Programming",
+    "topic": "Web Basics"
+  },
+  {
+    "id": "q10",
+    "format": { "name": "MultipleChoice", "options": ["==", "===", "=", "!=="] },
+    "text": "Which checks value AND type?",
+    "maxMark": 1,
+    "answers": ["==="],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q11",
+    "format": {
+      "name": "GapFill",
+      "sentence": "The result of typeof null is {gap-6}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "answers": ["object"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q12",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["console.log", "print()", "echo", "write()", "debug()"]
+    },
+    "text": "Which outputs to the console in JS?",
+    "maxMark": 1,
+    "answers": ["console.log"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q13",
+    "format": {
+      "name": "GapFill",
+      "sentence": "Arrays start at index {gap-1}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "answers": ["0"],
+    "subject": "Programming",
+    "topic": "Arrays"
+  },
+  {
+    "id": "q14",
+    "format": { "name": "ShortAnswer" },
+    "text": "Name two primitive data types",
+    "maxMark": 5,
+    "answers": ["string", "number"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q15",
+    "format": { "name": "MultipleChoice", "options": ["function", "method", "class", "loop"] },
+    "text": "What defines reusable code?",
+    "maxMark": 1,
+    "answers": ["function"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q16",
+    "format": {
+      "name": "GapFill",
+      "sentence": "A function is declared using {gap-8}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "answers": ["function"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q17",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["DOM", "API", "HTTP", "JSON"]
+    },
+    "text": "What represents page structure?",
+    "maxMark": 1,
+    "answers": ["DOM"],
+    "subject": "Programming",
+    "topic": "Web Basics"
+  },
+  {
+    "id": "q18",
+    "format": {
+      "name": "GapFill",
+      "sentence": "React is a {gap-10} library for building UIs"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "answers": ["JavaScript"],
+    "subject": "Programming",
+    "topic": "Web Basics"
+  },
+  {
+    "id": "q19",
+    "format": { "name": "ShortAnswer" },
+    "text": "What is 2 + 2?",
+    "maxMark": 1,
+    "answers": ["4"],
+    "subject": "Programming",
+    "topic": "Basics"
+  },
+  {
+    "id": "q20",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["1/2", "1/3", "1/4", "1/5"]
+    },
+    "text": "What fraction is 50%?",
+    "maxMark": 1,
+    "answers": ["1/2"],
     "subject": "Programming",
     "topic": "Basics"
   }

@@ -1,6 +1,6 @@
 export async function loadQuestion(filters) {
     try {
-        const queryString = filters ? `?${filters}` : "";
+        const queryString = filters ? `${filters}` : "";
         const response = await fetch(`/api/questions${queryString}`);
         
         const data = await response.json();
