@@ -4,26 +4,29 @@ const { format } = require("morgan");
 const reader = require("../questions/reader.js");
 const extraction = require("./extraction.js");
 
-const normalise = (text) => {
-  let normalised = "";
-
-  normalised = text.toLowerCase();
-
-  return normalised;
-};
-
 const formats = {
   ShortAnswer: (word, correctAnswers) => {
+
     return correctAnswers.includes(word);
   },
   MultipleChoice: (word, correctAnswers) => {
     return correctAnswers.includes(word);
   },
   GapFill: (word, correctAnswers, answerNumber) => {
-    console.log(answerNumber);
+
     return correctAnswers[answerNumber] == word;
   },
 };
+
+const normaliseAnswers = (answers) => {
+  const newAnswers = []
+  answers.forEach((answer) => {
+    const normalised = extraction.normalise(answer)
+    newAnswers.push(normalised)
+  });
+
+  return newAnswers
+}
 
 const markAnswers = (id, userAnswers) => {
   const question = reader.getQuestion(id);
@@ -38,16 +41,21 @@ const markAnswers = (id, userAnswers) => {
 
   let mark = 0;
 
+  markPoints.forEach((markPoint, index) => {
+    markPoints[index] = normaliseAnswers(markPoint)
+  })
+
+
   userAnswers.forEach((userAnswer, answerNumber) => {
-    const words = userAnswer.split(" ");
-    console.log(words);
-    let wordAttempts = 0; // How many non filler words the user's message contained
     userAnswer = extraction.normalise(userAnswer);
+    const words = userAnswer.split(" ");
+    let wordAttempts = 0; // How many non filler words the user's message contained
 
     markPoints.forEach((markPoint, index) => {
       for (const word of words) {
         if (isCorrect(word, markPoint, answerNumber)) {
           mark += 1;
+          console.log("Gained mark")
         } else if (extraction.isFillerWord(word)) {
           continue; // Skip filler words
         }

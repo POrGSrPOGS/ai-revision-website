@@ -7,7 +7,7 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["variables"]],
+    "markPoints": [["variables", "constants"]],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -141,11 +141,11 @@
     "id": "q13",
     "format": {
       "name": "GapFill",
-      "sentence": "Arrays start at index {gap-1}"
+      "sentence": "Arrays start at index {gap-4}"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["0"]],
+    "markPoints": [["0", "Zero"]],
     "subject": "Programming",
     "topic": "Arrays"
   },
@@ -208,7 +208,7 @@
         "Four"
         ]
       ],
-      
+
     "subject": "Programming",
     "topic": "Basics"
   },
