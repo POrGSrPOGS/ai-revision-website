@@ -97,7 +97,7 @@
     "format": { "name": "ShortAnswer" },
     "text": "What does CSS stand for?",
     "maxMark": 3,
-    "markPoints": [["Cascading Style Sheets"]],
+    "markPoints": [["Cascading"],["Style"],["Sheets"]],
     "subject": "Programming",
     "topic": "Web Basics"
   },

@@ -6,14 +6,14 @@ const extraction = require("./extraction.js");
 
 const formats = {
   ShortAnswer: (word, correctAnswers) => {
-
+    console.log({word, correctAnswers})
     return correctAnswers.includes(word);
   },
   MultipleChoice: (word, correctAnswers) => {
     return correctAnswers.includes(word);
   },
   GapFill: (word, correctAnswers, answerNumber) => {
-
+    console.log(answerNumber);
     return correctAnswers[answerNumber] == word;
   },
 };
@@ -49,7 +49,11 @@ const markAnswers = (id, userAnswers) => {
   userAnswers.forEach((userAnswer, answerNumber) => {
     userAnswer = extraction.normalise(userAnswer);
     const words = userAnswer.split(" ");
+    console.log(words);
     let wordAttempts = 0; // How many non filler words the user's message contained
+
+
+    console.log({userAnswer, markPoints})
 
     markPoints.forEach((markPoint, index) => {
       for (const word of words) {
