@@ -25,14 +25,14 @@ router.get("/", (request, response) => {
 router.post("/answer", (request, response) => {
   const questionId = sessions.get(request, "currentQuestionId");
   const body = request.body;
-  const answer = body.answer;
+  const answers = body.answers;
 
-  console.log({ questionId, answer });
+  console.log({ questionId, answers });
 
-  const mark = marking.markAnswer(questionId, answer);
-  const correctAnswers = reader.getAnswers(questionId);
+  const mark = marking.markAnswers(questionId, answers);
+  const markPoints = reader.getmarkPoints(questionId);
 
-  response.status(200).json({ mark, correctAnswers });
+  response.status(200).json({ mark, markPoints });
 });
 
 module.exports = router;

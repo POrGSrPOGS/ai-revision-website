@@ -11,7 +11,7 @@ export async function loadQuestion(filters) {
     }
 }
 
-export async function answerQuestion(answer) {
+export async function answerQuestion(answers) {
     try {
         const response = await fetch(`/api/questions/answer`, {
             method: "POST",
@@ -19,7 +19,7 @@ export async function answerQuestion(answer) {
             "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                answer: answer,
+                answers: answers,
             }),
         });
 

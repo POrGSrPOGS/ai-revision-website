@@ -9,9 +9,9 @@ const getQuestion = (id) => {
   return question;
 };
 
-const getAnswers = (id) => {
+const getmarkPoints = (id) => {
   const question = getQuestion(id);
-  return question?.answers;
+  return question?.markPoints;
 };
 
 const satisfiesFilters = (question, filters) => {
@@ -54,4 +54,4 @@ const getDisplayInfo = (question) => {
   return displayInfo;
 };
 
-module.exports = { getQuestion, getQuestionIds, getDisplayInfo, getAnswers };
+module.exports = { getQuestion, getQuestionIds, getDisplayInfo, getmarkPoints };

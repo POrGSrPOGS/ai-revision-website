@@ -13,63 +13,58 @@ const normalise = (text) => {
 };
 
 const formats = {
-  "ShortAnswer": (word, correctAnswers) => {
-    return correctAnswers.includes(word)
+  ShortAnswer: (word, correctAnswers) => {
+    return correctAnswers.includes(word);
   },
-  "MultipleChoice": (word, correctAnswers) => {
-    return correctAnswers.includes(word)
+  MultipleChoice: (word, correctAnswers) => {
+    return correctAnswers.includes(word);
   },
-  "GapFill": (word, correctAnswers, answerNumber) => {
-    console.log(answerNumber)
-    return correctAnswers[answerNumber] == word
+  GapFill: (word, correctAnswers, answerNumber) => {
+    console.log(answerNumber);
+    return correctAnswers[answerNumber] == word;
   },
-}
+};
 
-const markAnswer = (id, userAnswers) => {
+const markAnswers = (id, userAnswers) => {
   const question = reader.getQuestion(id);
   if (!question) {
     return null;
   }
   const maxMark = question.maxMark;
-  const correctAnswers = question.answers;
+  const markPoints = question.markPoints;
 
-  correctAnswers.forEach((correctAnswer, index) => {
-    correctAnswers[index] = extraction.normalise(correctAnswer)
-  })
-
-  const formatName = question.format.name
-  const isCorrect = formats[formatName]
+  const formatName = question.format.name;
+  const isCorrect = formats[formatName];
 
   let mark = 0;
 
   userAnswers.forEach((userAnswer, answerNumber) => {
-    userAnswer = extraction.normalise(userAnswer)
+    const words = userAnswer.split(" ");
+    console.log(words);
+    let wordAttempts = 0; // How many non filler words the user's message contained
+    userAnswer = extraction.normalise(userAnswer);
 
-    const words = userAnswer.split(" ")
-    console.log(words)
-    let wordAttempts = 0 // How many non filler words the user's message contained
+    markPoints.forEach((markPoint, index) => {
+      for (const word of words) {
+        if (isCorrect(word, markPoint, answerNumber)) {
+          mark += 1;
+        } else if (extraction.isFillerWord(word)) {
+          continue; // Skip filler words
+        }
 
-    for (const word of words) {
+        if (wordAttempts >= maxMark) {
+          mark -= 1;
+        }
 
-      if (isCorrect(word, correctAnswers, answerNumber)) {
-        mark += 1
-      } else if (extraction.isFillerWord(word)) {
-        continue; // Skip filler words
+        wordAttempts += 1;
       }
-
-      if (wordAttempts >= maxMark) {
-        mark -= 1
-      }
-
-      wordAttempts += 1
-
-    }
+    });
   });
 
-  mark = Math.min(mark, maxMark)
-  mark = Math.max(mark, 0)
+  mark = Math.min(mark, maxMark);
+  mark = Math.max(mark, 0);
 
   return mark;
 };
 
-module.exports = { markAnswer };
+module.exports = { markAnswers };

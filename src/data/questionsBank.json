@@ -1,28 +1,37 @@
 [
   {
     "id": "q1",
-    "format": { "name": "GapFill", "sentence": "JavaScript uses {gap-9} to store values" },
+    "format": {
+      "name": "GapFill",
+      "sentence": "JavaScript uses {gap-9} to store values"
+    },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "answers": ["variables"],
+    "markPoints": [["variables"]],
     "subject": "Programming",
     "topic": "Basics"
   },
   {
     "id": "q2",
-    "format": { "name": "MultipleChoice", "options": ["array", "object", "string", "number"] },
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["array", "object", "string", "number"]
+    },
     "text": "What best describes {} in JavaScript?",
     "maxMark": 1,
-    "answers": ["object"],
+    "markPoints": [["object"]],
     "subject": "Programming",
     "topic": "Basics"
   },
   {
     "id": "q3",
-    "format": { "name": "GapFill", "sentence": "A loop repeats code {gap-8} times or until a condition is met" },
+    "format": {
+      "name": "GapFill",
+      "sentence": "A loop repeats code {gap-8} times or until a condition is met"
+    },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "answers": ["multiple"],
+    "markPoints": [["multiple"]],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -31,16 +40,19 @@
     "format": { "name": "ShortAnswer" },
     "text": "Name two JavaScript variable keywords",
     "maxMark": 2,
-    "answers": ["let", "const"],
+    "markPoints": [["let", "const"]],
     "subject": "Programming",
     "topic": "Basics"
   },
   {
     "id": "q5",
-    "format": { "name": "MultipleChoice", "options": ["push()", "pop()", "shift()", "slice()", "concat()"] },
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["push()", "pop()", "shift()", "slice()", "concat()"]
+    },
     "text": "Which method adds to the end of an array?",
     "maxMark": 1,
-    "answers": ["push()"],
+    "markPoints": [["push()"]],
     "subject": "Programming",
     "topic": "Arrays"
   },
@@ -52,7 +64,7 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 3,
-    "answers": ["HyperText", "Markup", "Language"],
+    "markPoints": [["HyperText", "Markup", "Language"]],
     "subject": "Programming",
     "topic": "Web Basics"
   },
@@ -64,7 +76,7 @@
     },
     "text": "Which tag is used for paragraphs?",
     "maxMark": 1,
-    "answers": ["<p>"],
+    "markPoints": [["<p>"]],
     "subject": "Programming",
     "topic": "HTML"
   },
@@ -76,7 +88,7 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "answers": ["style"],
+    "markPoints": [["style"]],
     "subject": "Programming",
     "topic": "Web Basics"
   },
@@ -85,16 +97,19 @@
     "format": { "name": "ShortAnswer" },
     "text": "What does CSS stand for?",
     "maxMark": 3,
-    "answers": ["Cascading Style Sheets"],
+    "markPoints": [["Cascading Style Sheets"]],
     "subject": "Programming",
     "topic": "Web Basics"
   },
   {
     "id": "q10",
-    "format": { "name": "MultipleChoice", "options": ["==", "===", "=", "!=="] },
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["==", "===", "=", "!=="]
+    },
     "text": "Which checks value AND type?",
     "maxMark": 1,
-    "answers": ["==="],
+    "markPoints": [["==="]],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -106,7 +121,7 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "answers": ["object"],
+    "markPoints": [["object"]],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -118,7 +133,7 @@
     },
     "text": "Which outputs to the console in JS?",
     "maxMark": 1,
-    "answers": ["console.log"],
+    "markPoints": [["console.log"]],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -130,16 +145,19 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "answers": ["0"],
+    "markPoints": [["0"]],
     "subject": "Programming",
     "topic": "Arrays"
   },
   {
     "id": "q15",
-    "format": { "name": "MultipleChoice", "options": ["function", "method", "class", "loop"] },
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["function", "method", "class", "loop"]
+    },
     "text": "What defines reusable code?",
     "maxMark": 1,
-    "answers": ["function"],
+    "markPoints": [["function"]],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -151,7 +169,7 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "answers": ["function"],
+    "markPoints": [["function"]],
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -163,7 +181,7 @@
     },
     "text": "What represents page structure?",
     "maxMark": 1,
-    "answers": ["DOM"],
+    "markPoints": [["DOM"]],
     "subject": "Programming",
     "topic": "Web Basics"
   },
@@ -175,7 +193,7 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "answers": ["JavaScript"],
+    "markPoints": [["JavaScript"]],
     "subject": "Programming",
     "topic": "Web Basics"
   },
@@ -184,7 +202,13 @@
     "format": { "name": "ShortAnswer" },
     "text": "What is 2 + 2?",
     "maxMark": 1,
-    "answers": ["4"],
+    "markPoints": [
+      [
+        "4", 
+        "Four"
+        ]
+      ],
+      
     "subject": "Programming",
     "topic": "Basics"
   },
@@ -196,7 +220,7 @@
     },
     "text": "What fraction is 50%?",
     "maxMark": 1,
-    "answers": ["1/2"],
+    "markPoints": [["1/2"]],
     "subject": "Programming",
     "topic": "Basics"
   }

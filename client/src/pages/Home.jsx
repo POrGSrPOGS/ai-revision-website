@@ -8,18 +8,17 @@ import questionFormats from "../components/questionFormats";
 import { loadQuestion, answerQuestion } from "../services/questions";
 
 export default function Home({}) {
-
   // Initialisation
   const [answers, setAnswers] = useState([]);
   const [currentQuestion, setQuestion] = useState(null);
   const [marks, setMarks] = useState(null);
 
-  const QuestionComponent = questionFormats[currentQuestion?.format.name ?? "ShortAnswer"]
-
+  const QuestionComponent =
+    questionFormats[currentQuestion?.format.name ?? "ShortAnswer"];
 
   // Functions
 
-  const displayQuestion = async(filters) => {
+  const displayQuestion = async (filters) => {
     const data = await loadQuestion(filters);
     console.log({ data });
 
@@ -27,8 +26,7 @@ export default function Home({}) {
     setQuestion(displayInfo);
   };
 
-  const submitAnswers = async() => {
-
+  const submitAnswers = async () => {
     console.log("User answered:", answers);
 
     const data = await answerQuestion(answers);
@@ -36,26 +34,25 @@ export default function Home({}) {
 
     const maxMark = currentQuestion.maxMark;
     const mark = data.mark;
-    const correctAnswers = data.correctAnswers;
+    const markPoints = data.markPoints;
 
     setMarks({
       maxMark: maxMark,
       mark: mark,
-      correctAnswers: correctAnswers,
+      markPoints: markPoints,
     });
   };
 
-  const nextQuestion = async() => {
+  const nextQuestion = async () => {
     setMarks(null);
     setAnswers([]);
     await displayQuestion();
   };
 
-  const handleClick = async(event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
     if (marks) {
       await nextQuestion();
-      
     } else {
       await submitAnswers();
     }
@@ -73,9 +70,8 @@ export default function Home({}) {
     <>
       <div className="flex justify-center min-h-screen pt-20">
         <main className="flex flex-col items-center gap-4">
-
           <Question question={currentQuestion} />
-          
+
           <QuestionComponent
             placeholder="Enter your answer"
             answers={answers}

@@ -1,40 +1,48 @@
 export default function Marks({ marks }) {
-    if (!marks) return
+  if (!marks) return null;
 
-    const maxMark = marks?.maxMark
+  const maxMark = marks?.maxMark;
 
-    const mark = marks?.mark
-    const correctAnswers = marks?.correctAnswers
+  const mark = marks?.mark;
+  const markPoints = marks?.markPoints;
 
-    let feedback = ""
-    let colour = ""
+  let feedback = "";
+  let colour = "";
 
-    if (mark === maxMark) {
-        feedback = "Perfection!"
-        colour = "text-green-400"
-    } else if (mark > 0) {
-        feedback = "Almost!"
-        colour = "text-orange-400"
-    } else {
-        feedback = "Better luck next time"
-        colour = "text-red-400"
-    }
-    
-    return(
+  if (mark === maxMark) {
+    feedback = "Perfection!";
+    colour = "text-green-400";
+  } else if (mark > 0) {
+    feedback = "Almost!";
+    colour = "text-orange-400";
+  } else {
+    feedback = "Better luck next time";
+    colour = "text-red-400";
+  }
 
-        <div className = {`text-3xl mt-5 font-bold ${colour} text-center`}>
-            <div className = "text-4xl"> {`${feedback}`} </div>
-            <div className= "mt-3 text-2xl"> {`[ ${mark} / ${maxMark} ] `} </div>
-            
-            <ul className= "text-xl mt-10 font-mono text-green">
-                <div className = "mb-4"> Correct Answers: </div>
-                {correctAnswers.map((correctAnswer, index) => (
-                    <li key={index}>{`• "${correctAnswer}" [1] `}</li>
+  console.log(markPoints);
 
-                ))}
+  const correctAnswers = markPoints.map((markPoint, index) => (
+    <div key={index} className="mt-6">
+      <h2 className="text-xl font-semibold">Marking Point {index+1}: </h2>
 
-            </ul>
-            
-        </div>
-  )
+      <ul className="list-none p-0 m-0">
+        {markPoint.map((correctAnswer, i) => (
+          <li key={i}>• {correctAnswer}</li>
+        ))}
+      </ul>
+    </div>
+  ));
+
+  return (
+    <div className={`text-3xl font-bold ${colour} text-center `}>
+      <div className="text-4xl mt-5"> {`${feedback}`} </div>
+      <div className="mt-3 text-2xl"> {`[ ${mark} / ${maxMark} ] `} </div>
+
+      <div className="font-mono text-green mt-10 text-left">
+        <div className="text-3xl mb-4"> Correct Answers: </div>
+        <div className="text-2xl "> {correctAnswers} </div>
+      </div>
+    </div>
+  );
 }
