@@ -53,7 +53,7 @@ const markAnswers = (id, userAnswers) => {
     console.log(words);
 
     const usedMarkingPoints = new Set(); // Marking points that have already been given
-    let reusedMarkingPoint = false
+    let reusedMarkingPoint = false;
 
     console.log({ userAnswer, markPoints });
 
@@ -65,26 +65,25 @@ const markAnswers = (id, userAnswers) => {
       const wordIsCorrect = markPoints.some((markPoint, index) => {
         // True if any markpoint includes the user's keyword
 
-        if (usedMarkingPoints.has(index)) {
-          reusedMarkingPoint = true
-          return false;
-        }
-
         if (isCorrect(word, markPoint, answerNumber)) {
-          usedMarkingPoints.add(index);
-          return true;
+          if (usedMarkingPoints.has(index)) {
+            reusedMarkingPoint = true;
+            return false;
+          } else {
+            usedMarkingPoints.add(index);
+            return true;
+          }
         } else {
           return false;
         }
       });
 
-      if (!wordIsCorrect && reusedMarkingPoint){
-
+      if (!wordIsCorrect && reusedMarkingPoint) {
         keywordsFeedback.push({
           word: word,
           feedback: "Ignored",
         });
-        return
+        return;
       }
 
       const feedback = wordIsCorrect ? "Correct" : "Incorrect";
