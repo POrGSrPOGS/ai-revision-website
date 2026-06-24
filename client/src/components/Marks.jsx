@@ -28,8 +28,7 @@ export default function Marks({ marks }) {
 
     return (
       <h3 key={index} className="">
-        {" "}
-        {keyword} ({keywordFeedback.feedback}){" "}
+        {keyword} ({keywordFeedback.feedback})
       </h3>
     );
   });
