@@ -58,10 +58,6 @@ const markAnswers = (id, userAnswers) => {
     console.log({ userAnswer, markPoints });
 
     words.forEach((word) => {
-      if (extraction.isFillerWord(word)) {
-        return;
-      }
-
       const wordIsCorrect = markPoints.some((markPoint, index) => {
         // True if any markpoint includes the user's keyword
 
@@ -78,12 +74,16 @@ const markAnswers = (id, userAnswers) => {
         }
       });
 
-      if (!wordIsCorrect && reusedMarkingPoint) {
-        keywordsFeedback.push({
-          word: word,
-          feedback: "Ignored",
-        });
-        return;
+      if (!wordIsCorrect) {
+        if (reusedMarkingPoint) {
+          keywordsFeedback.push({
+            word: word,
+            feedback: "Ignored",
+          });
+          return;
+        } else if (extraction.isFillerWord(word)) {
+          return;
+        }
       }
 
       const feedback = wordIsCorrect ? "Correct" : "Incorrect";
