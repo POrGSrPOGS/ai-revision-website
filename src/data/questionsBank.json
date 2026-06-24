@@ -64,7 +64,11 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 3,
-    "markPoints": [["HyperText", "Markup", "Language"]],
+    "markPoints": [
+      ["HyperText"], 
+      ["Markup"], 
+      ["Language"]
+    ],
     "subject": "Programming",
     "topic": "Web Basics"
   },

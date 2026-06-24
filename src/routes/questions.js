@@ -29,10 +29,10 @@ router.post("/answer", (request, response) => {
 
   console.log({ questionId, answers });
 
-  const mark = marking.markAnswers(questionId, answers);
+  const {mark, keywordsFeedback} = marking.markAnswers(questionId, answers);
   const markPoints = reader.getmarkPoints(questionId);
 
-  response.status(200).json({ mark, markPoints });
+  response.status(200).json({ mark, markPoints, keywordsFeedback });
 });
 
 module.exports = router;

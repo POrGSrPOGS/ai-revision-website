@@ -35,11 +35,13 @@ export default function Home({}) {
     const maxMark = currentQuestion.maxMark;
     const mark = data.mark;
     const markPoints = data.markPoints;
+    const keywordsFeedback = data.keywordsFeedback
 
     setMarks({
       maxMark: maxMark,
       mark: mark,
       markPoints: markPoints,
+      keywordsFeedback: keywordsFeedback,
     });
   };
 

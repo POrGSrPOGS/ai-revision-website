@@ -1,12 +1,11 @@
 // Logic for marking user answers
 
-const { format } = require("morgan");
 const reader = require("../questions/reader.js");
 const extraction = require("./extraction.js");
 
 const formats = {
   ShortAnswer: (word, correctAnswers) => {
-    console.log({word, correctAnswers})
+    console.log({ word, correctAnswers });
     return correctAnswers.includes(word);
   },
   MultipleChoice: (word, correctAnswers) => {
@@ -19,14 +18,14 @@ const formats = {
 };
 
 const normaliseAnswers = (answers) => {
-  const newAnswers = []
+  const newAnswers = [];
   answers.forEach((answer) => {
-    const normalised = extraction.normalise(answer)
-    newAnswers.push(normalised)
+    const normalised = extraction.normalise(answer);
+    newAnswers.push(normalised);
   });
 
-  return newAnswers
-}
+  return newAnswers;
+};
 
 const markAnswers = (id, userAnswers) => {
   const question = reader.getQuestion(id);
@@ -42,41 +41,75 @@ const markAnswers = (id, userAnswers) => {
   let mark = 0;
 
   markPoints.forEach((markPoint, index) => {
-    markPoints[index] = normaliseAnswers(markPoint)
-  })
+    markPoints[index] = normaliseAnswers(markPoint);
+  });
 
+  const keywordsFeedback = [];
+  let wordAttempts = 0; // How many non filler words the user's message contained
 
   userAnswers.forEach((userAnswer, answerNumber) => {
     userAnswer = extraction.normalise(userAnswer);
     const words = userAnswer.split(" ");
     console.log(words);
-    let wordAttempts = 0; // How many non filler words the user's message contained
 
+    const usedMarkingPoints = new Set(); // Marking points that have already been given
+    let reusedMarkingPoint = false
 
-    console.log({userAnswer, markPoints})
+    console.log({ userAnswer, markPoints });
 
-    markPoints.forEach((markPoint, index) => {
-      for (const word of words) {
-        if (isCorrect(word, markPoint, answerNumber)) {
-          mark += 1;
-          console.log("Gained mark")
-        } else if (extraction.isFillerWord(word)) {
-          continue; // Skip filler words
-        }
-
-        if (wordAttempts >= maxMark) {
-          mark -= 1;
-        }
-
-        wordAttempts += 1;
+    words.forEach((word) => {
+      if (extraction.isFillerWord(word)) {
+        return;
       }
+
+      const wordIsCorrect = markPoints.some((markPoint, index) => {
+        // True if any markpoint includes the user's keyword
+
+        if (usedMarkingPoints.has(index)) {
+          reusedMarkingPoint = true
+          return false;
+        }
+
+        if (isCorrect(word, markPoint, answerNumber)) {
+          usedMarkingPoints.add(index);
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      if (!wordIsCorrect && reusedMarkingPoint){
+
+        keywordsFeedback.push({
+          word: word,
+          feedback: "Ignored",
+        });
+        return
+      }
+
+      const feedback = wordIsCorrect ? "Correct" : "Incorrect";
+
+      if (wordIsCorrect) {
+        mark += 1;
+      }
+
+      if (wordAttempts >= maxMark) {
+        mark -= 1;
+      }
+
+      keywordsFeedback.push({
+        word: word,
+        feedback: feedback,
+      });
+
+      wordAttempts += 1;
     });
   });
 
   mark = Math.min(mark, maxMark);
   mark = Math.max(mark, 0);
 
-  return mark;
+  return { mark, keywordsFeedback };
 };
 
 module.exports = { markAnswers };
