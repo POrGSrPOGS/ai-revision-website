@@ -7,28 +7,41 @@ export default function Marks({ marks }) {
   const markPoints = marks?.markPoints;
   const keywordsFeedback = marks?.keywordsFeedback;
 
-  let feedback = "";
-  let colour = "";
+  let encouragementText = "";
+  let encouragementColour = "";
 
   if (mark === maxMark) {
-    feedback = "Perfection!";
-    colour = "text-green-400";
+    encouragementText = "Perfection!";
+    encouragementColour = "text-green-400";
   } else if (mark > 0) {
-    feedback = "Almost!";
-    colour = "text-orange-400";
+    encouragementText = "Almost!";
+    encouragementColour = "text-orange-400";
   } else {
-    feedback = "Better luck next time";
-    colour = "text-red-400";
+    encouragementText = "Better luck next time";
+    encouragementColour = "text-red-400";
   }
 
   console.log(markPoints);
 
   const userAnswers = keywordsFeedback.map((keywordFeedback, index) => {
     const keyword = keywordFeedback.word;
+    const feedback = keywordFeedback.feedback
+
+    let userAnswerColour = ""
+
+    if (feedback === "Correct") {
+      userAnswerColour = "text-green-600"
+    } else if (feedback === "Incorrect") {
+      userAnswerColour = "text-red-600"
+    } else if (feedback === "Ignored") {
+      userAnswerColour = "text-gray-400"
+    }
+
 
     return (
       <h3 key={index} className="">
-        {keyword} ({keywordFeedback.feedback})
+        <span className={`${userAnswerColour}`}> {keyword} ({feedback}) </span>
+         
       </h3>
     );
   });
@@ -47,10 +60,9 @@ export default function Marks({ marks }) {
 
   return (
     <div className={`text-3xl font-bold text-center `}>
-      <div className={`text-4xl mt-5 ${colour}`}> {`${feedback}`}</div>
-      <div className={`mt-3 text-2xl ${colour}`}>
-        {" "}
-        {`[ ${mark} / ${maxMark} ] `}{" "}
+      <div className={`text-4xl mt-5 ${encouragementColour}`}> {`${encouragementText}`}</div>
+      <div className={`mt-3 text-2xl ${encouragementColour}`}>
+        {`[ ${mark} / ${maxMark} ] `}
       </div>
 
       <div className="font-mono text-blue-400 mt-10 text-left">

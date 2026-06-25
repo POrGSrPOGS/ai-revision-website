@@ -38,9 +38,12 @@
   {
     "id": "q4",
     "format": { "name": "ShortAnswer" },
-    "text": "Name two JavaScript variable keywords",
+    "text": "Name two JavaScript modernly used variable keywords",
     "maxMark": 2,
-    "markPoints": [["let", "const"]],
+    "markPoints": [
+      ["let"],
+      ["const"]
+    ],
     "subject": "Programming",
     "topic": "Basics"
   },
