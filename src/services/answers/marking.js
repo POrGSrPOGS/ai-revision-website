@@ -5,14 +5,12 @@ const extraction = require("./extraction.js");
 
 const formats = {
   ShortAnswer: (word, correctAnswers) => {
-    console.log({ word, correctAnswers });
     return correctAnswers.includes(word);
   },
   MultipleChoice: (word, correctAnswers) => {
     return correctAnswers.includes(word);
   },
   GapFill: (word, correctAnswers, answerNumber) => {
-    console.log(answerNumber);
     return correctAnswers[answerNumber] == word;
   },
 };

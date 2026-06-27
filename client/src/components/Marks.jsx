@@ -28,9 +28,11 @@ export default function Marks({ marks }) {
     const feedback = keywordFeedback.feedback
 
     let userAnswerColour = ""
+    let userAnswerMark = ""
 
     if (feedback === "Correct") {
       userAnswerColour = "text-green-600"
+
     } else if (feedback === "Incorrect") {
       userAnswerColour = "text-red-600"
     } else if (feedback === "Ignored") {

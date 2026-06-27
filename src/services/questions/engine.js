@@ -2,11 +2,12 @@
 
 const questionsReader = require("./reader.js");
 
-const getRandomQuestionId = (questions, excluded) => {
+const getRandomQuestion = (questions, excluded) => {
   let included = [];
 
   if (excluded.length !== 0) {
-    included = questions.filter((id) => {
+    included = questions.filter((question) => {
+      const id = question.id
       return !excluded.includes(id);
     });
 
@@ -21,8 +22,8 @@ const getRandomQuestionId = (questions, excluded) => {
   }
 
   const questionIdIndex = Math.floor(Math.random() * included.length);
-  console.log({ questions, excluded, included, questionIdIndex });
+
   return included[questionIdIndex];
 };
 
-module.exports = { getRandomQuestionId };
+module.exports = { getRandomQuestion };

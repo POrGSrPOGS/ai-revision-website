@@ -9,16 +9,23 @@ const getQuestion = (id) => {
   return question;
 };
 
-const getmarkPoints = (id) => {
+const getMarkPoints = (id) => {
   const question = getQuestion(id);
   return question?.markPoints;
 };
 
 const satisfiesFilters = (question, filters) => {
+
   if (filters) {
     for (const attribute in filters) {
-      actualValue = question[attribute];
-      correctValue = filters[attribute];
+
+    
+      let actualValue = question[attribute]; // TODO Create a system so this doesn't need to be hardcoded
+
+      if (attribute === "format"){ 
+        actualValue = actualValue.name
+      }
+      const correctValue = filters[attribute];
 
       if (actualValue !== correctValue) {
         return false;
@@ -29,7 +36,7 @@ const satisfiesFilters = (question, filters) => {
   return true;
 };
 
-const getQuestionIds = (filters) => {
+const getQuestions = (filters) => {
   if (!filters) {
     return questionsBank;
   }
@@ -37,8 +44,9 @@ const getQuestionIds = (filters) => {
   const questions = [];
 
   for (const question of questionsBank) {
+    
     if (satisfiesFilters(question, filters)) {
-      questions.push(question.id);
+      questions.push(question);
     }
   }
 
@@ -54,4 +62,4 @@ const getDisplayInfo = (question) => {
   return displayInfo;
 };
 
-module.exports = { getQuestion, getQuestionIds, getDisplayInfo, getmarkPoints };
+module.exports = { getQuestion, getQuestions, getDisplayInfo, getMarkPoints };

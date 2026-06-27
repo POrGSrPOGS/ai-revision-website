@@ -2,29 +2,39 @@
 
 const engine = require("../questions/engine.js");
 
-const get = (request, key) => {
+const getValue = (request, key) => {
   if (!request.session) request.session = {};
 
   return request.session[key];
 };
 
-const set = (request, key, value) => {
+const setValue = (request, key, value) => {
   if (!request.session) request.session = {};
 
   request.session[key] = value;
 };
 
-const getNewQuestionId = (request, questions, excluded) => {
-  let lastQuestionId = get(request, "currentQuestionId");
-  if (lastQuestionId) {
-    excluded.push(lastQuestionId);
+const getNewQuestion = (request, questions, excluded) => {
+  const lastQuestion = getValue(request, "currentQuestionId");
+  if (lastQuestion) {
+    excluded.push(lastQuestion);
   }
 
-  const newQuestionId = engine.getRandomQuestionId(questions, excluded);
+  const newQuestion = engine.getRandomQuestion(questions, excluded);
 
-  set(request, "currentQuestionId", newQuestionId);
+  setValue(request, "currentQuestionId", newQuestion);
 
-  return newQuestionId;
+  return newQuestion;
 };
 
-module.exports = { get, set, getNewQuestionId };
+const addMark = (request, questionId, mark) => {
+  const lastMarks = getValue(request, "lastMarks") ?? {}
+
+  const updated = {
+    ...lastMarks,
+    [questionId]: mark
+  }
+
+  setValue(request, "lastMarks", updated)
+}
+module.exports = { getValue, setValue, getNewQuestion, addMark };
