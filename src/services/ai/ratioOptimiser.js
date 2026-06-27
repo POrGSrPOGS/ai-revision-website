@@ -1,5 +1,4 @@
-const createRatioOptimiser = () => {
-    const state = {};
+const createRatioOptimiser = (state = {}) => {
     let baseline = 0;
     const temperature = 0.5; // Higher temperature = Greedy (Exploit > Explore)
 
@@ -50,7 +49,7 @@ const createRatioOptimiser = () => {
 
     const getState = () => structuredClone(state); // Get state for storing
 
-    return { propose, update};
+    return { propose, update, getState};
 };
 
 module.exports = createRatioOptimiser;

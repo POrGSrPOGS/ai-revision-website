@@ -11,11 +11,6 @@ const questionFormats = ["ShortAnswer", "MultipleChoice", "GapFill"]
 const reward = require("../services/ai/reward.js")
 const createRatioOptimiser = require("../services/ai/ratioOptimiser.js")
 
-const ratioOptimiser = createRatioOptimiser()
-
-const saveFormatState = (request) => {
-  sessions.setValue(request, "formatState", ratioOptimiser.getState())
-}
 
 const weightedRoll = (weights) => {
 
@@ -34,7 +29,9 @@ const weightedRoll = (weights) => {
 
 router.get("/", (request, response) => {
   let filters = request.query;
+  const ratioOptimiser = createRatioOptimiser(sessions.getValue(request,"formatState"))
   const proposal = ratioOptimiser.propose(questionFormats)
+  sessions.setValue(request, "lastProposal", proposal)
 
   console.log({proposal})
 
@@ -75,15 +72,20 @@ router.post("/answer", (request, response) => {
 
   const maxMark = question.maxMark;
 
-  const lastMark = sessions.getValue(request, "lastMarks")
+  const lastMarks = sessions.getValue(request, "lastMarks")
+  console.log(lastMarks)
+  const lastMark = lastMarks?.[questionId]
   sessions.addMark(request, questionId, mark)
 
   const score = reward.relativeMarkScore(lastMark, mark, maxMark)
 
   if (lastProposal) {
+    const ratioOptimiser = createRatioOptimiser(sessions.getValue(request,"formatState"))
     ratioOptimiser.update(lastProposal, score)
+    const state = ratioOptimiser.getState()
+    console.log({state})
+    sessions.setValue(request, "formatState", state)
   }
-  
 
   response.status(200).json({ mark, markPoints, keywordsFeedback });
 });
