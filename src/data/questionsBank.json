@@ -3,217 +3,249 @@
     "id": "q1",
     "format": {
       "name": "GapFill",
-      "sentence": "JavaScript uses {gap-9} to store values"
+      "sentence": "The Earth revolves around the {gap-3}"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["variables", "constants"]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["Sun"]],
+    "subject": "General Knowledge",
+    "topic": "Space"
   },
   {
     "id": "q2",
     "format": {
       "name": "MultipleChoice",
-      "options": ["array", "object", "string", "number"]
+      "options": ["Pacific", "Atlantic", "Indian", "Arctic"]
     },
-    "text": "What best describes {} in JavaScript?",
+    "text": "Which is the largest ocean on Earth?",
     "maxMark": 1,
-    "markPoints": [["object"]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["Pacific"]],
+    "subject": "Geography",
+    "topic": "Oceans"
   },
   {
     "id": "q3",
     "format": {
       "name": "GapFill",
-      "sentence": "A loop repeats code {gap-8} times or until a condition is met"
+      "sentence": "Water freezes at {gap-1}°C"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["multiple"]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["0", "zero"]],
+    "subject": "Science",
+    "topic": "States of Matter"
   },
   {
     "id": "q4",
-    "format": { "name": "ShortAnswer" },
-    "text": "Name two JavaScript modernly used variable keywords",
-    "maxMark": 2,
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Name a primary colour",
+    "maxMark": 1,
     "markPoints": [
-      ["let"],
-      ["const"]
+      ["red","blue","yellow"]
     ],
-    "subject": "Programming",
-    "topic": "Basics"
+    "subject": "Art",
+    "topic": "Colours"
   },
   {
     "id": "q5",
     "format": {
       "name": "MultipleChoice",
-      "options": ["push()", "pop()", "shift()", "slice()", "concat()"]
+      "options": ["Mars", "Venus", "Jupiter", "Mercury"]
     },
-    "text": "Which method adds to the end of an array?",
+    "text": "Which planet is known as the Red Planet?",
     "maxMark": 1,
-    "markPoints": [["push()"]],
-    "subject": "Programming",
-    "topic": "Arrays"
+    "markPoints": [["Mars"]],
+    "subject": "Science",
+    "topic": "Planets"
   },
-
+  {
+    "id": "q6",
+    "format": {
+      "name": "GapFill",
+      "sentence": "A week has {gap-1} days"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "markPoints": [["7", "seven"]],
+    "subject": "General Knowledge",
+    "topic": "Time"
+  },
   {
     "id": "q7",
     "format": {
       "name": "MultipleChoice",
-      "options": ["<p>", "<div>", "<span>", "<section>"]
+      "options": ["Paris", "London", "Rome", "Madrid"]
     },
-    "text": "Which tag is used for paragraphs?",
+    "text": "What is the capital of France?",
     "maxMark": 1,
-    "markPoints": [["<p>"]],
-    "subject": "Programming",
-    "topic": "HTML"
+    "markPoints": [["Paris"]],
+    "subject": "Geography",
+    "topic": "Capitals"
   },
   {
     "id": "q8",
     "format": {
       "name": "GapFill",
-      "sentence": "CSS controls the {gap-5} of a webpage"
+      "sentence": "Plants absorb {gap-14} from the atmosphere"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["style"]],
-    "subject": "Programming",
-    "topic": "Web Basics"
+    "markPoints": [["carbon dioxide"]],
+    "subject": "Science",
+    "topic": "Plants"
   },
   {
     "id": "q9",
-    "format": { "name": "ShortAnswer" },
-    "text": "What does CSS stand for?",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "What are the first three months of the year?",
     "maxMark": 3,
-    "markPoints": [["Cascading"],["Style"],["Sheets"]],
-    "subject": "Programming",
-    "topic": "Web Basics"
+    "markPoints": [
+      ["January"],
+      ["February"],
+      ["March"]
+    ],
+    "subject": "General Knowledge",
+    "topic": "Calendar"
   },
   {
     "id": "q10",
     "format": {
       "name": "MultipleChoice",
-      "options": ["==", "===", "=", "!=="]
+      "options": ["Oxygen", "Hydrogen", "Nitrogen", "Carbon Dioxide"]
     },
-    "text": "Which checks value AND type?",
+    "text": "Which gas do humans breathe in to survive?",
     "maxMark": 1,
-    "markPoints": [["==="]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["Oxygen"]],
+    "subject": "Science",
+    "topic": "Human Body"
   },
   {
     "id": "q11",
     "format": {
       "name": "GapFill",
-      "sentence": "The result of typeof null is {gap-6}"
+      "sentence": "The fastest land animal is the {gap-7}"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["object"]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["cheetah"]],
+    "subject": "Biology",
+    "topic": "Animals"
   },
   {
     "id": "q12",
     "format": {
       "name": "MultipleChoice",
-      "options": ["console.log", "print()", "echo", "write()", "debug()"]
+      "options": ["Shakespeare", "Dickens", "Tolkien", "Rowling"]
     },
-    "text": "Which outputs to the console in JS?",
+    "text": "Who wrote 'Romeo and Juliet'?",
     "maxMark": 1,
-    "markPoints": [["console.log"]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["Shakespeare"]],
+    "subject": "Literature",
+    "topic": "Authors"
   },
   {
     "id": "q13",
     "format": {
       "name": "GapFill",
-      "sentence": "Arrays start at index {gap-4}"
+      "sentence": "There are {gap-2} hours in one day"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["0", "Zero"]],
-    "subject": "Programming",
-    "topic": "Arrays"
+    "markPoints": [["24", "twenty-four"]],
+    "subject": "General Knowledge",
+    "topic": "Time"
+  },
+  {
+    "id": "q14",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Name the four seasons",
+    "maxMark": 4,
+    "markPoints": [
+      ["Spring"],
+      ["Summer"],
+      ["Autumn", "Fall"],
+      ["Winter"]
+    ],
+    "subject": "General Knowledge",
+    "topic": "Seasons"
   },
   {
     "id": "q15",
     "format": {
       "name": "MultipleChoice",
-      "options": ["function", "method", "class", "loop"]
+      "options": ["Dog", "Cat", "Dolphin", "Shark"]
     },
-    "text": "What defines reusable code?",
+    "text": "Which of these is a mammal that lives in the ocean?",
     "maxMark": 1,
-    "markPoints": [["function"]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["Dolphin"]],
+    "subject": "Biology",
+    "topic": "Animals"
   },
   {
     "id": "q16",
     "format": {
       "name": "GapFill",
-      "sentence": "A function is declared using {gap-8}"
+      "sentence": "The largest continent is {gap-4}"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["function"]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["Asia"]],
+    "subject": "Geography",
+    "topic": "Continents"
   },
   {
     "id": "q17",
     "format": {
       "name": "MultipleChoice",
-      "options": ["DOM", "API", "HTTP", "JSON"]
+      "options": ["100", "90", "180", "360"]
     },
-    "text": "What represents page structure?",
+    "text": "How many degrees are in a right angle?",
     "maxMark": 1,
-    "markPoints": [["DOM"]],
-    "subject": "Programming",
-    "topic": "Web Basics"
+    "markPoints": [["90"]],
+    "subject": "Mathematics",
+    "topic": "Geometry"
   },
   {
     "id": "q18",
     "format": {
       "name": "GapFill",
-      "sentence": "React is a {gap-10} library for building UIs"
+      "sentence": "The opposite of north is {gap-5}"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["JavaScript"]],
-    "subject": "Programming",
-    "topic": "Web Basics"
+    "markPoints": [["south"]],
+    "subject": "Geography",
+    "topic": "Directions"
   },
   {
     "id": "q19",
-    "format": { "name": "ShortAnswer" },
-    "text": "What is 2 + 2?",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Name a planet in our Solar System",
     "maxMark": 1,
     "markPoints": [
-      [
-        "4", 
-        "Four"
-        ]
-      ],
-
-    "subject": "Programming",
-    "topic": "Basics"
+      ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+    ],
+    "subject": "Science",
+    "topic": "Space"
   },
   {
     "id": "q20",
     "format": {
       "name": "MultipleChoice",
-      "options": ["1/2", "1/3", "1/4", "1/5"]
+      "options": ["Triangle", "Square", "Circle", "Pentagon"]
     },
-    "text": "What fraction is 50%?",
+    "text": "Which shape has exactly three sides?",
     "maxMark": 1,
-    "markPoints": [["1/2"]],
-    "subject": "Programming",
-    "topic": "Basics"
+    "markPoints": [["Triangle"]],
+    "subject": "Mathematics",
+    "topic": "Shapes"
   }
 ]

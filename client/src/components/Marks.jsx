@@ -31,10 +31,10 @@ export default function Marks({ marks }) {
     let userAnswerMark = ""
 
     if (feedback === "Correct") {
-      userAnswerColour = "text-green-600"
+      userAnswerColour = "text-blue-300"
 
     } else if (feedback === "Incorrect") {
-      userAnswerColour = "text-red-600"
+      userAnswerColour = "text-blue-600"
     } else if (feedback === "Ignored") {
       userAnswerColour = "text-gray-400"
     }
@@ -67,12 +67,12 @@ export default function Marks({ marks }) {
         {`[ ${mark} / ${maxMark} ] `}
       </div>
 
-      <div className="font-mono text-blue-400 mt-10 text-left">
+      <div className="font-mono text-blue-400 mt-10 text-left border p-5">
         <div className="text-3xl mb-4"> Your Answers: </div>
         <div className="text-2xl "> {userAnswers} </div>
       </div>
 
-      <div className="font-mono text-green mt-10 text-left">
+      <div className="font-mono text-green mt-10 text-left border p-5">
         <div className="text-3xl mb-4"> Correct Answers: </div>
         <div className="text-2xl "> {correctAnswers} </div>
       </div>
