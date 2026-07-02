@@ -10,8 +10,14 @@ const formats = {
   MultipleChoice: (word, correctAnswers) => {
     return correctAnswers.includes(word);
   },
-  GapFill: (word, correctAnswers, answerNumber) => {
-    return correctAnswers[answerNumber] == word;
+  GapFill: (word, correctAnswers, answerNumber, markPointNumber) => {
+    console.log("Answer number", answerNumber)
+    console.log("Word:",word)
+    console.log("Correct answers", correctAnswers)
+    console.log("Correct answer", correctAnswers[answerNumber])
+    
+    
+    return correctAnswers.includes(word) && answerNumber === markPointNumber;
   },
 };
 
@@ -45,8 +51,11 @@ const markAnswers = (id, userAnswers) => {
   const keywordsFeedback = [];
   let wordAttempts = 0; // How many non filler words the user's message contained
 
+  console.log({userAnswers})
+
   userAnswers.forEach((userAnswer, answerNumber) => {
     userAnswer = extraction.normalise(userAnswer);
+    console.log({userAnswer})
     const words = userAnswer.split(" ");
     console.log(words);
 
@@ -59,11 +68,12 @@ const markAnswers = (id, userAnswers) => {
       const wordIsCorrect = markPoints.some((markPoint, index) => {
         // True if any markpoint includes the user's keyword
 
-        if (isCorrect(word, markPoint, answerNumber)) {
+        if (isCorrect(word, markPoint, answerNumber, index)) {
           if (usedMarkingPoints.has(index)) {
             reusedMarkingPoint = true;
             return false;
           } else {
+            console.log("Gained mark for word: "+word)
             usedMarkingPoints.add(index);
             return true;
           }

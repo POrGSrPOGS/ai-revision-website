@@ -57,7 +57,7 @@ router.get("/", (request, response) => {
 });
 
 router.post("/answer", (request, response) => {
-  const question = sessions.getValue(request, "currentQuestionId");
+  const question = sessions.getValue(request, "currentQuestion");
   const questionId = question.id
   
   const lastProposal = sessions.getValue(request, "lastProposal")

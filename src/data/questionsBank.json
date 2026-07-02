@@ -59,22 +59,7 @@
     "subject": "Programming",
     "topic": "Arrays"
   },
-  {
-    "id": "q6",
-    "format": {
-      "name": "GapFill",
-      "sentence": "HTML stands for {gap-10} {gap-6} {gap-8}"
-    },
-    "text": "Fill in the gaps",
-    "maxMark": 3,
-    "markPoints": [
-      ["HyperText"], 
-      ["Markup"], 
-      ["Language"]
-    ],
-    "subject": "Programming",
-    "topic": "Web Basics"
-  },
+
   {
     "id": "q7",
     "format": {

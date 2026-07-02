@@ -15,14 +15,14 @@ const setValue = (request, key, value) => {
 };
 
 const getNewQuestion = (request, questions, excluded) => {
-  const lastQuestion = getValue(request, "currentQuestionId");
+  const lastQuestion = getValue(request, "currentQuestion");
   if (lastQuestion) {
     excluded.push(lastQuestion);
   }
 
   const newQuestion = engine.getRandomQuestion(questions, excluded);
 
-  setValue(request, "currentQuestionId", newQuestion);
+  setValue(request, "currentQuestion", newQuestion);
 
   return newQuestion;
 };
