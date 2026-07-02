@@ -78,16 +78,17 @@ router.post("/answer", (request, response) => {
   sessions.addMark(request, questionId, mark)
 
   const score = reward.relativeMarkScore(lastMark, mark, maxMark)
+  let formatState = {}
 
   if (lastProposal) {
     const ratioOptimiser = createRatioOptimiser(sessions.getValue(request,"formatState"))
     ratioOptimiser.update(lastProposal, score)
-    const state = ratioOptimiser.getState()
-    console.log({state})
-    sessions.setValue(request, "formatState", state)
+    formatState = ratioOptimiser.getState()
+    console.log({formatState})
+    sessions.setValue(request, "formatState", formatState)
   }
 
-  response.status(200).json({ mark, markPoints, keywordsFeedback });
+  response.status(200).json({ mark, markPoints, keywordsFeedback, formatState });
 });
 
 module.exports = router;
