@@ -52,7 +52,7 @@ export default function Marks({ marks }) {
     <div key={index} className="mt-6">
       <h2 className="text-xl font-semibold">Marking Point {index + 1}: </h2>
 
-      <ul className="list-none p-0 m-0">
+      <ul className="list-none text-left ml-11">
         {markPoint.map((correctAnswer, i) => (
           <li key={i}>• {correctAnswer}</li>
         ))}
@@ -67,14 +67,14 @@ export default function Marks({ marks }) {
         {`[ ${mark} / ${maxMark} ] `}
       </div>
 
-      <div className="font-mono text-blue-400 mt-10 text-left border p-5">
+      <div className="font-mono text-blue-400 mt-10 text-center border rounded-lg p-2 py-3">
         <div className="text-3xl mb-4"> Your Answers: </div>
         <div className="text-2xl "> {userAnswers} </div>
       </div>
 
-      <div className="font-mono text-green mt-10 text-left border p-5">
+      <div className="font-mono text-green mt-10 text-center border rounded-lg p-3">
         <div className="text-3xl mb-4"> Correct Answers: </div>
-        <div className="text-2xl "> {correctAnswers} </div>
+        <div className="text-2xl"> {correctAnswers} </div>
       </div>
     </div>
   );
