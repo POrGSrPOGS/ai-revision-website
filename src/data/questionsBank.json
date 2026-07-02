@@ -91,8 +91,11 @@
       "sentence": "Plants absorb {gap-14} from the atmosphere"
     },
     "text": "Fill in the gaps",
-    "maxMark": 1,
-    "markPoints": [["carbon dioxide"]],
+    "maxMark": 2,
+    "markPoints": [
+      ["carbon"],
+      ["dioxide"]
+    ],
     "subject": "Science",
     "topic": "Plants"
   },
