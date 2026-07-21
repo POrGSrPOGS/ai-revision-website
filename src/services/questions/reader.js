@@ -50,6 +50,7 @@ const getQuestionIds = (filters = []) => { // Return a 1d array of question id's
 };
 
 const getDisplayInfo = (question) => {
+  console.log({question})
   const displayInfo = {};
   questionDisplayInfo.forEach((attribute) => {
     displayInfo[attribute] = question[attribute];
