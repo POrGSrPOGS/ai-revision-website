@@ -7,14 +7,9 @@ const isFillerWord = (word) => {
 };
 
 const normalise = (text) => {
-  const escaped = ignoredPunctuation.map(
-    (punctuationMark) => "\\" + punctuationMark,
-  );
-  const regex = new RegExp(`[${escaped.join("")}]`, "g");
-
   return text
     .toLowerCase()
-    .replace(/[\p{P}\p{S}]/gu, "")
+    .replace(/\p{P}/gu, "")
     .replace(/\s+/g, " ")
     .trim();
 };
