@@ -88,7 +88,7 @@
     "id": "q8",
     "format": {
       "name": "GapFill",
-      "sentence": "Plants absorb {gap-14} from the atmosphere"
+      "sentence": "Plants absorb {gap-6} {gap-7} from the atmosphere"
     },
     "text": "Fill in the gaps",
     "maxMark": 2,
