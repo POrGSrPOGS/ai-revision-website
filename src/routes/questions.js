@@ -5,7 +5,7 @@ const marking = require("../services/answers/marking.js");
 const reader = require("../services/questions/reader.js");
 const sessions = require("../services/data/sessions.js");
 const sessionShortcuts = require("../services/data/sessionShortcuts.js");
-const reward = require("../services/ai/reward.js")
+const reward = require("../services/ai/reward.js");
 const { format } = require("morgan");
 const { captureRejectionSymbol } = require("supertest/lib/test.js");
 
@@ -18,7 +18,7 @@ const randomInRange = (min, max) => {
 
 // Return a random key where each key has a different chance of being rolled
 const weightedRoll = (weights) => {
-  console.log({weights})
+  console.log({ weights });
   let total = 0;
 
   for (const weight of Object.values(weights)) {
@@ -40,7 +40,7 @@ const weightedRoll = (weights) => {
 router.get("/", (request, response) => {
   let filters = request.query; // Filters on which types of questions can be chosen
   const proposal = sessionShortcuts.getNewProposal(request);
-  console.log({proposal})
+  console.log({ proposal });
   const questionFormat = weightedRoll(proposal);
   filters = {
     ...filters,
@@ -48,8 +48,8 @@ router.get("/", (request, response) => {
   };
 
   const questionId = sessionShortcuts.getNewQuestionId(request, filters);
-  console.log({questionId})
-  const question = reader.getQuestion(questionId)
+  console.log({ questionId });
+  const question = reader.getQuestion(questionId);
   const displayInfo = reader.getDisplayInfo(question);
 
   response.status(200).json({ displayInfo });

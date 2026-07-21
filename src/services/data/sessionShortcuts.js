@@ -40,7 +40,7 @@ const setMarks = (request, newValue) => {
 const getNewQuestionId = (request, filters) => {
   // Select a new question and return and save it
   // exclude the last question
-    console.log({filters})
+  console.log({ filters });
   const questionIds = reader.getQuestionIds(filters);
 
   const lastQuestionId = getCurrentQuestionId(request);

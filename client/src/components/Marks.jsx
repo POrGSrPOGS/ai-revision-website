@@ -25,25 +25,25 @@ export default function Marks({ marks }) {
 
   const userAnswers = keywordsFeedback.map((keywordFeedback, index) => {
     const keyword = keywordFeedback.word;
-    const feedback = keywordFeedback.feedback
+    const feedback = keywordFeedback.feedback;
 
-    let userAnswerColour = ""
-    let userAnswerMark = ""
+    let userAnswerColour = "";
+    let userAnswerMark = "";
 
     if (feedback === "Correct") {
-      userAnswerColour = "text-blue-300"
-
+      userAnswerColour = "text-blue-300";
     } else if (feedback === "Incorrect") {
-      userAnswerColour = "text-blue-600"
+      userAnswerColour = "text-blue-600";
     } else if (feedback === "Ignored") {
-      userAnswerColour = "text-gray-400"
+      userAnswerColour = "text-gray-400";
     }
-
 
     return (
       <h3 key={index} className="">
-        <span className={`${userAnswerColour}`}> {keyword} ({feedback}) </span>
-         
+        <span className={`${userAnswerColour}`}>
+          {" "}
+          {keyword} ({feedback}){" "}
+        </span>
       </h3>
     );
   });
@@ -62,7 +62,10 @@ export default function Marks({ marks }) {
 
   return (
     <div className={`text-3xl font-bold text-center `}>
-      <div className={`text-4xl mt-5 ${encouragementColour}`}> {`${encouragementText}`}</div>
+      <div className={`text-4xl mt-5 ${encouragementColour}`}>
+        {" "}
+        {`${encouragementText}`}
+      </div>
       <div className={`mt-3 text-2xl ${encouragementColour}`}>
         {`[ ${mark} / ${maxMark} ] `}
       </div>

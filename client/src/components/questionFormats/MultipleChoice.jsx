@@ -8,7 +8,6 @@ export default function MultipleChoice({
   onSubmit,
   format,
 }) {
-
   const getColour = (option) => {
     let colour = "";
 
@@ -43,15 +42,15 @@ export default function MultipleChoice({
   };
 
   const updateChoices = (selectedOption) => {
-    const index = answers.indexOf(selectedOption)
+    const index = answers.indexOf(selectedOption);
 
-    if (index === -1) { // Option not already selected
-      return [...answers, selectedOption]
+    if (index === -1) {
+      // Option not already selected
+      return [...answers, selectedOption];
     } else {
-      return answers.filter(option => option !== selectedOption)
+      return answers.filter((option) => option !== selectedOption);
     }
-
-  }
+  };
 
   const options = useMemo(() => {
     return shuffleOptions(format.options);

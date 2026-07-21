@@ -1,39 +1,35 @@
-const bayesian = require("./bayesian.js")
+const bayesian = require("./bayesian.js");
 
 const createBandits = () => {
+  const state = {};
 
-    const state = {}
+  const getState = () => {
+    return JSON.parse(JSON.stringify(state));
+  };
 
-    const getState = () => {
-        return JSON.parse(JSON.stringify(state))
+  const ensureParam = (key) => {
+    if (!state[key]) {
+      state[key] = { alpha: 1, beta: 1 };
     }
 
-    const ensureParam = (key) => {
-        if (!state[key]) {
-            state[key] = { alpha: 1, beta: 1}
-        }
-        
-        return state[key]
-    }
+    return state[key];
+  };
 
-    const propose = (keys) => bayesian.suggest(state, keys)
+  const propose = (keys) => bayesian.suggest(state, keys);
 
-    const update = (params, score) => {
+  const update = (params, score) => {
+    for (const key in params) {
+      const param = ensureParam(key);
+      const value = params[key];
 
+      const reward = score * value;
+      const penalty = (1 - score) * value;
 
-        for (const key in params) { 
+      //console.log({score})
+      //console.log({param})
+      //console.log({params})
 
-            const param = ensureParam(key)
-            const value = params[key]
-
-            const reward = score * value
-            const penalty = (1 - score) * value
-
-            //console.log({score})
-            //console.log({param})
-            //console.log({params})
-
-            /*
+      /*
 
             if (score >= 0.5) {
                 param.alpha += score * value
@@ -42,13 +38,11 @@ const createBandits = () => {
             }
                 */
 
-            param.alpha += reward
-            param.beta += penalty
-            
-            
-        }
+      param.alpha += reward;
+      param.beta += penalty;
     }
-    return { propose, update, getState }
-}
+  };
+  return { propose, update, getState };
+};
 
-module.exports = createBandits
+module.exports = createBandits;

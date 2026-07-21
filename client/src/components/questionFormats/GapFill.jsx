@@ -14,41 +14,41 @@ export default function GapFill({
   const splitSentence = sentence.split(" ");
 
   const setArrayIndex = (array, index, value) => {
+    const newArray = structuredClone(array);
+    newArray[index] = value;
 
-    const newArray = structuredClone(array)
-    newArray[index] = value
-
-    return newArray
-  }
+    return newArray;
+  };
 
   let gapCount = 0;
 
-  
   const unfinishedSentence = splitSentence.map((text, index) => {
-
-    const gapMatch = text.match(gapRegex) || []
-    const answerLength = gapMatch[1]
+    const gapMatch = text.match(gapRegex) || [];
+    const answerLength = gapMatch[1];
 
     if (answerLength !== undefined) {
+      const answerIndex = gapCount++;
 
-        const answerIndex = gapCount++;
-        
-        const width = Math.max(Math.round(answerLength*1.3), 3)
+      const width = Math.max(Math.round(answerLength * 1.3), 3);
 
       return (
         <input
-        key={index}
+          key={index}
           type="text"
           value={answers[answerIndex] || ""}
-          onChange={(event) => onChange(setArrayIndex(answers, answerIndex, event.target.value))}
+          onChange={(event) =>
+            onChange(setArrayIndex(answers, answerIndex, event.target.value))
+          }
           className="border border-green-700 text-xl p-1 text-center font-bold"
           style={{ width: `${width}ch` }}
         />
       );
-
-
     } else {
-      return <p key={index} className="text-xl">{text}</p>;
+      return (
+        <p key={index} className="text-xl">
+          {text}
+        </p>
+      );
     }
   });
 

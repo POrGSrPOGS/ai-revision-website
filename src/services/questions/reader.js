@@ -15,15 +15,12 @@ const getMarkPoints = (id) => {
 };
 
 const satisfiesFilters = (question, filters) => {
-
   if (filters) {
     for (const attribute in filters) {
-
-    
       let actualValue = question[attribute]; // TODO: Create a system so this doesn't need to be hardcoded
 
-      if (attribute === "format"){ 
-        actualValue = actualValue.name
+      if (attribute === "format") {
+        actualValue = actualValue.name;
       }
       const correctValue = filters[attribute];
 
@@ -36,21 +33,21 @@ const satisfiesFilters = (question, filters) => {
   return true;
 };
 
-const getQuestionIds = (filters = []) => { // Return a 1d array of question id's that 
-    const questions = [];
+const getQuestionIds = (filters = []) => {
+  // Return a 1d array of question id's that
+  const questions = [];
 
-    for (const question of questionsBank) {
-      
-      if (satisfiesFilters(question, filters)) {
-        questions.push(question.id);
-      }
+  for (const question of questionsBank) {
+    if (satisfiesFilters(question, filters)) {
+      questions.push(question.id);
     }
+  }
 
-    return questions;
+  return questions;
 };
 
 const getDisplayInfo = (question) => {
-  console.log({question})
+  console.log({ question });
   const displayInfo = {};
   questionDisplayInfo.forEach((attribute) => {
     displayInfo[attribute] = question[attribute];

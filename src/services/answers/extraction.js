@@ -1,21 +1,20 @@
-const fillerWords = require("../../data/fillerWords.json")
+const fillerWords = require("../../data/fillerWords.json");
 
-const ignoredPunctuation = [
-  ".", 
-  ",",
-]
+const ignoredPunctuation = [".", ","];
 
 const isFillerWord = (word) => {
-  return fillerWords.includes(word)
-}
+  return fillerWords.includes(word);
+};
 
 const normalise = (text) => {
-  const escaped = ignoredPunctuation.map(punctuationMark => "\\" + punctuationMark);
+  const escaped = ignoredPunctuation.map(
+    (punctuationMark) => "\\" + punctuationMark,
+  );
   const regex = new RegExp(`[${escaped.join("")}]`, "g");
 
   return text
     .toLowerCase()
-    .replace(regex, "")
+    .replace(/[\p{P}\p{S}]/gu, "")
     .replace(/\s+/g, " ")
     .trim();
 };

@@ -42,9 +42,7 @@
     },
     "text": "Name a primary colour",
     "maxMark": 1,
-    "markPoints": [
-      ["red","blue","yellow"]
-    ],
+    "markPoints": [["red", "blue", "yellow"]],
     "subject": "Art",
     "topic": "Colours"
   },
@@ -92,10 +90,7 @@
     },
     "text": "Fill in the gaps",
     "maxMark": 2,
-    "markPoints": [
-      ["carbon"],
-      ["dioxide"]
-    ],
+    "markPoints": [["carbon"], ["dioxide"]],
     "subject": "Science",
     "topic": "Plants"
   },
@@ -106,11 +101,7 @@
     },
     "text": "What are the first three months of the year?",
     "maxMark": 3,
-    "markPoints": [
-      ["January"],
-      ["February"],
-      ["March"]
-    ],
+    "markPoints": [["January"], ["February"], ["March"]],
     "subject": "General Knowledge",
     "topic": "Calendar"
   },
@@ -169,12 +160,7 @@
     },
     "text": "Name the four seasons",
     "maxMark": 4,
-    "markPoints": [
-      ["Spring"],
-      ["Summer"],
-      ["Autumn", "Fall"],
-      ["Winter"]
-    ],
+    "markPoints": [["Spring"], ["Summer"], ["Autumn", "Fall"], ["Winter"]],
     "subject": "General Knowledge",
     "topic": "Seasons"
   },
@@ -234,7 +220,16 @@
     "text": "Name a planet in our Solar System",
     "maxMark": 1,
     "markPoints": [
-      ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+      [
+        "Mercury",
+        "Venus",
+        "Earth",
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Uranus",
+        "Neptune"
+      ]
     ],
     "subject": "Science",
     "topic": "Space"

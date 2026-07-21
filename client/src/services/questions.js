@@ -1,32 +1,30 @@
 export async function loadQuestion(filters) {
-    try {
-        const queryString = filters ? `${filters}` : "";
-        const response = await fetch(`/api/questions?${queryString}`);
-        
-        const data = await response.json();
-        return data
+  try {
+    const queryString = filters ? `${filters}` : "";
+    const response = await fetch(`/api/questions?${queryString}`);
 
-    } catch (error) {
-        console.error("Failed to load question:");
-    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to load question:");
+  }
 }
 
 export async function answerQuestion(answers) {
-    try {
-        const response = await fetch(`/api/questions/answer`, {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                answers: answers,
-            }),
-        });
+  try {
+    const response = await fetch(`/api/questions/answer`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        answers: answers,
+      }),
+    });
 
-        const data = await response.json();
-        return data
-
-    } catch (error) {
-        console.error("Failed to answer question")
-    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to answer question");
+  }
 }
