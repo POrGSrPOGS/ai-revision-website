@@ -2,28 +2,27 @@
 
 const questionsReader = require("./reader.js");
 
-const getRandomQuestion = (questions, excluded) => {
-  let included = [];
+// Helper function for picking completely randomly from a 1d list
+const getRandomItem = (items) => {
+  const randomIndex = Math.floor(Math.random() * items.length);
 
-  if (excluded.length !== 0) {
-    included = questions.filter((question) => {
-      const id = question.id
-      return !excluded.includes(id);
-    });
+  return items[randomIndex]
+}
 
-    if (included.length === 0) {
-      console.log(
-        "No questions available that satisfy filter and excluded questions, allowing excluded",
-      );
-      included = excluded;
-    }
-  } else {
-    included = questions;
+// Return a random question id from a 1d list of question ids, ignoring excluded question ids
+const getRandomQuestionId = (questionIds, excludedIds = []) => {
+  let includedIds = [];
+
+  // Remove excluded ids from question ids
+  includedIds = questionsIds.filter(questionId => excludedIds.includes(questionId));
+
+  if (includedIds.length === 0) {
+    console.warn("No included question ids satisfy filter, allowing excluded question ids");
+    includedIds = questionIds;
   }
 
-  const questionIdIndex = Math.floor(Math.random() * included.length);
-
-  return included[questionIdIndex];
+  const randomQuestionId = getRandomItem(includedIds)
+  return randomQuestionId
 };
 
-module.exports = { getRandomQuestion };
+module.exports = { getRandomQuestionId };

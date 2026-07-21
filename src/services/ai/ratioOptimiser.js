@@ -1,8 +1,8 @@
 const createRatioOptimiser = (state = {}) => {
     let baseline = 0;
-    const temperature = 0.5; // Higher temperature = Greedy (Exploit > Explore)
+    const temperature = 0.3; // Higher temperature = Less greedy (Explores more, Exploits less)
 
-    const ensure = (key) => { // Ensure key has a valid value
+    const ensure = (key) => { // Ensure key has a valid value else initialises it
         if (!(key in state)) state[key] = 0;
     };
 
@@ -37,13 +37,15 @@ const createRatioOptimiser = (state = {}) => {
         const keys = Object.keys(proposal);
         const n = keys.length;
 
-        baseline = 0.95 * baseline + 0.05 * reward;
         const advantage = reward - baseline;
+        baseline = 0.95 * baseline + 0.05 * reward;
+
 
         for (const key of keys) {
             ensure(key);
-            state[key] += lr * advantage * (proposal[key] - 1 / n); 
+
             // Reward based on learning rate, how high the score was and how much the key contributed to the ratio
+            state[key] += lr * advantage * (proposal[key] - 1 / n); 
         }
     };
 

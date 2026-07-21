@@ -5,19 +5,32 @@ const marking = require("../services/answers/marking.js");
 const reader = require("../services/questions/reader.js");
 const engine = require("../services/questions/engine.js");
 const sessions = require("../services/data/sessions.js");
+const sessionShortcuts = require("../services/data/sessionShortcuts.js")
+const reward = require("../services/ai/reward.js")
+
+const createRatioOptimiser = require("../services/ai/ratioOptimiser.js");
+const { format } = require("morgan");
 
 const questionFormats = ["ShortAnswer", "MultipleChoice", "GapFill"]
 
-const reward = require("../services/ai/reward.js")
-const createRatioOptimiser = require("../services/ai/ratioOptimiser.js")
+const randomInRange = (min, max) => {
+  const range = max - min
+  const randomNumber = (Math.random() * range) + min
 
+  return randomNumber
+}
 
+// Return a random key where each key has a different chance of being rolled
 const weightedRoll = (weights) => {
-
-  const roll = Math.random()
 
   let total = 0
 
+  for (const weight of Object.values(weights)) {
+    total += weight
+  }
+  const roll = randomInRange(0, total)
+
+  total = 0
   for (const [key, weight] of Object.entries(weights)) {
     total += weight
 
@@ -27,29 +40,17 @@ const weightedRoll = (weights) => {
   }
 }
 
+// User requests a question, server returns ONLY the display information needed for the user to answer the question
 router.get("/", (request, response) => {
-  let filters = request.query;
-  const ratioOptimiser = createRatioOptimiser(sessions.getValue(request,"formatState"))
-  const proposal = ratioOptimiser.propose(questionFormats)
-  sessions.setValue(request, "lastProposal", proposal)
-
-  console.log({proposal})
-
+  let filters = request.query; // Filters on which types of questions can be chosen
+  const proposal = sessionShortcuts.getNewProposal
   const questionFormat = weightedRoll(proposal)
-
-  //console.log({questionFormat})
-
   filters = {
     ...filters,
     "format": questionFormat
   }
 
-
-  const questions = reader.getQuestions(filters);
-
-  const excluded = [];
-  const question = sessions.getNewQuestion(request, questions, excluded);
-  //console.log({question})
+  const questionId = sessions.getNewQuestionId(request, questionIds);
 
   const displayInfo = reader.getDisplayInfo(question);
 

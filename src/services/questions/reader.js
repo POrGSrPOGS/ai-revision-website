@@ -20,7 +20,7 @@ const satisfiesFilters = (question, filters) => {
     for (const attribute in filters) {
 
     
-      let actualValue = question[attribute]; // TODO Create a system so this doesn't need to be hardcoded
+      let actualValue = question[attribute]; // TODO: Create a system so this doesn't need to be hardcoded
 
       if (attribute === "format"){ 
         actualValue = actualValue.name
@@ -36,21 +36,17 @@ const satisfiesFilters = (question, filters) => {
   return true;
 };
 
-const getQuestions = (filters) => {
-  if (!filters) {
-    return questionsBank;
-  }
+const getQuestionIds = (filters = []) => { // Return a 1d array of question id's that 
+    const questions = [];
 
-  const questions = [];
-
-  for (const question of questionsBank) {
-    
-    if (satisfiesFilters(question, filters)) {
-      questions.push(question);
+    for (const question of questionsBank) {
+      
+      if (satisfiesFilters(question, filters)) {
+        questions.push(question.id);
+      }
     }
-  }
 
-  return questions;
+    return questions;
 };
 
 const getDisplayInfo = (question) => {
@@ -62,4 +58,4 @@ const getDisplayInfo = (question) => {
   return displayInfo;
 };
 
-module.exports = { getQuestion, getQuestions, getDisplayInfo, getMarkPoints };
+module.exports = { getQuestion, getQuestionIds, getDisplayInfo, getMarkPoints };
