@@ -43,7 +43,8 @@ const weightedRoll = (weights) => {
 // User requests a question, server returns ONLY the display information needed for the user to answer the question
 router.get("/", (request, response) => {
   let filters = request.query; // Filters on which types of questions can be chosen
-  const proposal = sessionShortcuts.getNewProposal
+  const proposal = sessionShortcuts.getNewProposal(request)
+
   const questionFormat = weightedRoll(proposal)
   filters = {
     ...filters,
@@ -58,10 +59,9 @@ router.get("/", (request, response) => {
 });
 
 router.post("/answer", (request, response) => {
-  const question = sessions.getValue(request, "currentQuestion");
-  const questionId = question.id
+  const questionId = sessionShortcuts.getCurrentQuestionId(request);
   
-  const lastProposal = sessions.getValue(request, "lastProposal")
+  const lastProposal = sessionShortcuts.getProposal(request)
 
   const body = request.body;
   const answers = body.answers;
@@ -73,20 +73,22 @@ router.post("/answer", (request, response) => {
 
   const maxMark = question.maxMark;
 
-  const lastMarks = sessions.getValue(request, "lastMarks")
+  const lastMarks = sessionShortcuts.getMarks(request)
   console.log(lastMarks)
   const lastMark = lastMarks?.[questionId]
-  sessions.addMark(request, questionId, mark)
+  sessionShortcuts.addMark(request, questionId, mark)
 
   const score = reward.relativeMarkScore(lastMark, mark, maxMark)
   let formatState = {}
 
   if (lastProposal) {
-    const ratioOptimiser = createRatioOptimiser(sessions.getValue(request,"formatState"))
+    const lastFormatState = sessionShortcuts.getFormatState(request)
+    const ratioOptimiser = createRatioOptimiser(lastFormatState)
+
     ratioOptimiser.update(lastProposal, score)
     formatState = ratioOptimiser.getState()
     console.log({formatState})
-    sessions.setValue(request, "formatState", formatState)
+    sessionShortcuts.setFormatState(formatState)
   }
 
   response.status(200).json({ mark, markPoints, keywordsFeedback, formatState });

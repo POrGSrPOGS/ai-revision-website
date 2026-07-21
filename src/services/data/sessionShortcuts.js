@@ -51,7 +51,7 @@ const getNewQuestionId = (request, filters) => {
 
 const getNewProposal = (request) => {
 
-  const formatState = sessions.getValue(request,"formatState")
+  const formatState = getFormatState(request)
 
   const ratioOptimiser = createRatioOptimiser(formatState)
   const proposal = ratioOptimiser.propose(questionFormats)
@@ -71,4 +71,16 @@ const addMark = (request, questionId, mark) => { // Update the user's last mark 
   setMarks(request, updated)
 }
 
-module.exports = { }
+module.exports = { 
+    getCurrentQuestionId, 
+    setCurrentQuestionId,
+    getProposal,
+    setProposal,
+    getFormatState,
+    setFormatState,
+    getMarks,
+    setMarks,
+    getNewQuestionId,
+    getNewProposal,
+    addMark,
+}
