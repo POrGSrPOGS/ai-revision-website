@@ -33,10 +33,10 @@ export default function progressBar({ title, progress = 0, theme }) {
 
   return (
     <div
-      className={`w-100 flex items-center gap-5 ${themeStyles.border} border-1 p-2 rounded-lg m-5`}
+      className={`w-100 flex items-center gap-5 ${themeStyles.border} border-1 p-2 rounded-lg m-3`}
     >
-      <div className={`text-left w-40 ${themeStyles.text}`}> {title} </div>
-      <div className={`text-right w-6 ${themeStyles.text}`}>
+      <div className={`text-left w-40 text-xl ${themeStyles.text}`}> {title} </div>
+      <div className={`text-right w-10 text-xl ${themeStyles.text}`}>
         {" "}
         {percentage}%{" "}
       </div>
