@@ -27,7 +27,7 @@
     "id": "q3",
     "format": {
       "name": "GapFill",
-      "sentence": "Water freezes at {gap-1}°C"
+      "sentence": "Water freezes at {gap-1} °C"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,

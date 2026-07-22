@@ -29,11 +29,11 @@ const setFormatState = (request, newValue) => {
   setValue(request, "formatState", newValue);
 };
 
-const getMarks = (request) => {
+const getPastMarks = (request) => {
   return getValue(request, "marks");
 };
 
-const setMarks = (request, newValue) => {
+const setPastMarks = (request, newValue) => {
   setValue(request, "marks", newValue);
 };
 
@@ -78,9 +78,9 @@ const feedbackProposal = (request, score) => {
   return formatState;
 };
 
-const addMark = (request, questionId, mark) => {
+const addPastMark = (request, questionId, mark) => {
   // Update the user's last mark for the question id
-  const lastMarks = getMarks(request) ?? {};
+  const lastMarks = getPastMarks(request) ?? {};
 
   const updated = {
     ...lastMarks,
@@ -97,10 +97,10 @@ module.exports = {
   setProposal,
   getFormatState,
   setFormatState,
-  getMarks,
-  setMarks,
+  getPastMarks,
+  setPastMarks,
   getNewQuestionId,
   getNewProposal,
   feedbackProposal,
-  addMark,
+  addPastMark,
 };

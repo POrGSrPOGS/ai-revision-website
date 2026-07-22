@@ -16,7 +16,7 @@ const randomInRange = (min, max) => {
   return randomNumber;
 };
 
-// Return a random key where each key has a different chance of being rolled
+// Return a random key where each key has a different chance (weight) of being rolled
 const weightedRoll = (weights) => {
   console.log({ weights });
   let total = 0;
@@ -39,22 +39,26 @@ const weightedRoll = (weights) => {
 // User requests a question, server returns ONLY the display information needed for the user to answer the question
 router.get("/", (request, response) => {
   let filters = request.query; // Filters on which types of questions can be chosen
-  const proposal = sessionShortcuts.getNewProposal(request);
+  const proposal = sessionShortcuts.getNewProposal(request); // Fetch the proposed optimal ratios of question formats
   console.log({ proposal });
-  const questionFormat = weightedRoll(proposal);
+  const questionFormat = weightedRoll(proposal); // Perform a weighted roll to pick a random question format based on the weight
+
   filters = {
     ...filters,
     format: questionFormat,
-  };
+  }; // Add a filter so that question pool only includes selected question format
 
   const questionId = sessionShortcuts.getNewQuestionId(request, filters);
   console.log({ questionId });
   const question = reader.getQuestion(questionId);
   const displayInfo = reader.getDisplayInfo(question);
 
-  response.status(200).json({ displayInfo });
+  response.status(200).json({ displayInfo }); // Return the information needed to display the question
 });
 
+// User requests a mark for their question, server returns the mark they received, the ways the user could have got marks,
+// specific feedback for each word in their answer, informing the user if each word was correct and if not, why
+// the state for question formats is also returned so the client can display the current thought optimal ratio of question formats
 router.post("/answer", (request, response) => {
   const questionId = sessionShortcuts.getCurrentQuestionId(request);
   const question = reader.getQuestion(questionId);
@@ -67,11 +71,14 @@ router.post("/answer", (request, response) => {
   const { mark, keywordsFeedback } = marking.markAnswers(questionId, answers);
   const markPoints = reader.getMarkPoints(questionId);
   const maxMark = question.maxMark;
-  const lastMarks = sessionShortcuts.getMarks(request);
 
+
+  // Update session data so the system can view the user's improvement in score and decide the effect of each question format
+  const lastMarks = sessionShortcuts.getPastMarks(request);
   const lastMark = lastMarks?.[questionId];
-  sessionShortcuts.addMark(request, questionId, mark);
+  sessionShortcuts.addPastMark(request, questionId, mark);
 
+  // Gets the user's improvement score and feed it back
   const score = reward.relativeMarkScore(lastMark, mark, maxMark);
   const formatState = sessionShortcuts.feedbackProposal(request, score);
 
