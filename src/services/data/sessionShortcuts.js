@@ -87,7 +87,7 @@ const addPastMark = (request, questionId, mark) => {
     [questionId]: mark,
   };
 
-  setMarks(request, updated);
+  setPastMarks(request, updated);
 };
 
 module.exports = {
