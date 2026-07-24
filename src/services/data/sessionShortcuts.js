@@ -3,11 +3,7 @@ const createRatioOptimiser = require("../ai/ratioOptimiser");
 const reader = require("../questions/reader");
 const engine = require("../questions/engine");
 
-const questionFormats = [
-  "ShortAnswer",
-  "MultipleChoice",
-  "GapFill",
-];
+const questionFormats = ["ShortAnswer", "MultipleChoice", "GapFill"];
 
 const createSessionShortcuts = (request) => {
   const get = (key) => {
@@ -47,14 +43,9 @@ const createSessionShortcuts = (request) => {
 
     const currentId = getCurrentQuestionId();
 
-    const excludedIds = currentId
-      ? [currentId]
-      : [];
+    const excludedIds = currentId ? [currentId] : [];
 
-    const newQuestionId = engine.getRandomQuestionId(
-      questionIds,
-      excludedIds
-    );
+    const newQuestionId = engine.getRandomQuestionId(questionIds, excludedIds);
 
     if (newQuestionId) {
       setCurrentQuestionId(newQuestionId);
@@ -64,38 +55,27 @@ const createSessionShortcuts = (request) => {
   };
 
   const getNewProposal = () => {
-    const ratioOptimiser = createRatioOptimiser(
-      getFormatState()
-    );
+    const ratioOptimiser = createRatioOptimiser(getFormatState());
 
-    const proposal = ratioOptimiser.propose(
-      questionFormats
-    );
-
-    set("lastProposal", proposal);
-
+    const proposal = ratioOptimiser.propose(questionFormats);
     return proposal;
   };
 
   const feedbackProposal = (questionId, score) => {
-    const lastProposal = getPastProposal(questionId);
 
-    if (!lastProposal) {
-      return {};
-    }
+    const lastProposal = getPastProposal(questionId)
+    console.log("last proposal", lastProposal)
 
-    const ratioOptimiser = createRatioOptimiser(
-      getFormatState()
-    );
+    console.log("state", getFormatState())
+    const ratioOptimiser = createRatioOptimiser(getFormatState());
 
-    ratioOptimiser.update(
-      lastProposal,
-      score
-    );
+    ratioOptimiser.update(lastProposal, score);
 
     const newState = ratioOptimiser.getState();
 
     setFormatState(newState);
+
+    console.log("state", newState)
 
     return newState;
   };
@@ -126,21 +106,13 @@ const createSessionShortcuts = (request) => {
   const logProposal = (questionId, proposal) => {
     const mark = getPastMark(questionId);
 
-    logAnswer(
-      questionId,
-      proposal,
-      mark
-    );
+    logAnswer(questionId, proposal, mark);
   };
 
   const logMark = (questionId, mark) => {
     const proposal = getPastProposal(questionId);
 
-    logAnswer(
-      questionId,
-      proposal,
-      mark
-    );
+    logAnswer(questionId, proposal, mark);
   };
 
   return {

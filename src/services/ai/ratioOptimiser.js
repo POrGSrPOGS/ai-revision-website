@@ -1,6 +1,12 @@
+const baseProposal = {
+  ShortAnswer: 1/3,
+  MultipleChoice: 1/3,
+  GapFill: 1/3,
+};
+
 const createRatioOptimiser = (state = {}) => {
-  let baseline = 0;
-  const temperature = 0.3; // Higher temperature = Less greedy (Explores more, Exploits less)
+  let baseline = 0.5;
+  const temperature = 0.7; // Higher temperature = Less greedy (Explores more, Exploits less)
 
   const ensure = (key) => {
     // Ensure key has a valid value else initialises it
@@ -35,7 +41,7 @@ const createRatioOptimiser = (state = {}) => {
     return softmax(noisyLogits, keys);
   };
 
-  const update = (proposal, reward) => {
+  const update = (proposal = baseProposal, reward) => {
     // Update states based on how high a reward the proposal earnt
     const lr = 0.5;
     const keys = Object.keys(proposal);
