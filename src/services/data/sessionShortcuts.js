@@ -1,106 +1,164 @@
 const { getValue, setValue } = require("./sessions");
 const createRatioOptimiser = require("../ai/ratioOptimiser");
-const reader = require("../questions/reader.js");
-const engine = require("../questions/engine.js");
+const reader = require("../questions/reader");
+const engine = require("../questions/engine");
 
-const questionFormats = ["ShortAnswer", "MultipleChoice", "GapFill"];
+const questionFormats = [
+  "ShortAnswer",
+  "MultipleChoice",
+  "GapFill",
+];
 
-const getCurrentQuestionId = (request) => {
-  return getValue(request, "currentQuestionId");
-};
-
-const setCurrentQuestionId = (request, newValue) => {
-  setValue(request, "currentQuestionId", newValue);
-};
-
-const getProposal = (request) => {
-  return getValue(request, "lastProposal");
-};
-
-const setProposal = (request, newValue) => {
-  setValue(request, "lastProposal", newValue);
-};
-
-const getFormatState = (request) => {
-  return getValue(request, "formatState");
-};
-
-const setFormatState = (request, newValue) => {
-  setValue(request, "formatState", newValue);
-};
-
-const getPastMarks = (request) => {
-  return getValue(request, "marks");
-};
-
-const setPastMarks = (request, newValue) => {
-  setValue(request, "marks", newValue);
-};
-
-const getNewQuestionId = (request, filters) => {
-  // Select a new question and return and save it
-  // exclude the last question
-  console.log({ filters });
-  const questionIds = reader.getQuestionIds(filters);
-
-  const lastQuestionId = getCurrentQuestionId(request);
-  const excludedIds = lastQuestionId ? [lastQuestionId] : []; // Don't exclude last question's id if it's undefined
-  const newQuestionId = engine.getRandomQuestionId(questionIds, excludedIds);
-
-  if (newQuestionId) {
-    setCurrentQuestionId(request, newQuestionId);
-  }
-
-  return newQuestionId;
-};
-
-const getNewProposal = (request) => {
-  const formatState = getFormatState(request);
-
-  const ratioOptimiser = createRatioOptimiser(formatState);
-  const proposal = ratioOptimiser.propose(questionFormats);
-  setProposal(request, proposal);
-
-  return proposal;
-};
-
-const feedbackProposal = (request, score) => {
-  const lastProposal = getProposal(request);
-  if (!lastProposal) return {};
-
-  const lastFormatState = getFormatState(request);
-  const ratioOptimiser = createRatioOptimiser(lastFormatState);
-  ratioOptimiser.update(lastProposal, score);
-
-  const formatState = ratioOptimiser.getState();
-  setFormatState(request, formatState);
-
-  return formatState;
-};
-
-const addPastMark = (request, questionId, mark) => {
-  // Update the user's last mark for the question id
-  const lastMarks = getPastMarks(request) ?? {};
-
-  const updated = {
-    ...lastMarks,
-    [questionId]: mark,
+const createSessionShortcuts = (request) => {
+  const get = (key) => {
+    return getValue(request, key);
   };
 
-  setPastMarks(request, updated);
+  const set = (key, value) => {
+    setValue(request, key, value);
+  };
+
+  const getCurrentQuestionId = () => {
+    return get("currentQuestionId");
+  };
+
+  const setCurrentQuestionId = (id) => {
+    set("currentQuestionId", id);
+  };
+
+  const getFormatState = () => {
+    return get("formatState");
+  };
+
+  const setFormatState = (state) => {
+    set("formatState", state);
+  };
+
+  const getPastAnswers = () => {
+    return get("pastAnswers") ?? {};
+  };
+
+  const setPastAnswers = (answers) => {
+    set("pastAnswers", answers);
+  };
+
+  const getNewQuestionId = (filters) => {
+    const questionIds = reader.getQuestionIds(filters);
+
+    const currentId = getCurrentQuestionId();
+
+    const excludedIds = currentId
+      ? [currentId]
+      : [];
+
+    const newQuestionId = engine.getRandomQuestionId(
+      questionIds,
+      excludedIds
+    );
+
+    if (newQuestionId) {
+      setCurrentQuestionId(newQuestionId);
+    }
+
+    return newQuestionId;
+  };
+
+  const getNewProposal = () => {
+    const ratioOptimiser = createRatioOptimiser(
+      getFormatState()
+    );
+
+    const proposal = ratioOptimiser.propose(
+      questionFormats
+    );
+
+    set("lastProposal", proposal);
+
+    return proposal;
+  };
+
+  const feedbackProposal = (questionId, score) => {
+    const lastProposal = getPastProposal(questionId);
+
+    if (!lastProposal) {
+      return {};
+    }
+
+    const ratioOptimiser = createRatioOptimiser(
+      getFormatState()
+    );
+
+    ratioOptimiser.update(
+      lastProposal,
+      score
+    );
+
+    const newState = ratioOptimiser.getState();
+
+    setFormatState(newState);
+
+    return newState;
+  };
+
+  const logAnswer = (questionId, proposal, mark) => {
+    const answers = getPastAnswers();
+
+    answers[questionId] = {
+      proposal,
+      mark,
+    };
+
+    setPastAnswers(answers);
+  };
+
+  const getPastProposal = (questionId) => {
+    const answers = getPastAnswers();
+
+    return answers[questionId]?.proposal;
+  };
+
+  const getPastMark = (questionId) => {
+    const answers = getPastAnswers();
+
+    return answers[questionId]?.mark;
+  };
+
+  const logProposal = (questionId, proposal) => {
+    const mark = getPastMark(questionId);
+
+    logAnswer(
+      questionId,
+      proposal,
+      mark
+    );
+  };
+
+  const logMark = (questionId, mark) => {
+    const proposal = getPastProposal(questionId);
+
+    logAnswer(
+      questionId,
+      proposal,
+      mark
+    );
+  };
+
+  return {
+    getCurrentQuestionId,
+    setCurrentQuestionId,
+    getFormatState,
+    setFormatState,
+    getPastAnswers,
+    setPastAnswers,
+    getNewQuestionId,
+    getNewProposal,
+    feedbackProposal,
+    logAnswer,
+    logProposal,
+    logMark,
+    getPastMark,
+    getPastProposal,
+  };
 };
 
-module.exports = {
-  getCurrentQuestionId,
-  setCurrentQuestionId,
-  getProposal,
-  setProposal,
-  getFormatState,
-  setFormatState,
-  getPastMarks,
-  setPastMarks,
-  getNewQuestionId,
-  getNewProposal,
-  feedbackProposal,
-  addPastMark,
-};
+module.exports = createSessionShortcuts;

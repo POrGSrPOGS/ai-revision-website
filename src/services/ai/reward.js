@@ -1,14 +1,10 @@
 const relativeMarkScore = (lastMark = 0, newMark, maxMark) => {
-  const improvement = newMark - lastMark;
-  const maxImprovement = maxMark - lastMark;
-
-  console.log(lastMark, newMark, maxMark);
-
-  if (maxImprovement === 0) {
-    return 0.5;
+  
+  if (newMark === 0) {
+    return 0
   }
 
-  return Math.max(0, improvement / maxImprovement);
+  return ((newMark - lastMark) / maxMark + 1) / 2;
 };
 
 module.exports = { relativeMarkScore };

@@ -31,10 +31,13 @@ const normaliseAnswers = (answers) => {
 };
 
 const markAnswers = (id, userAnswers) => {
+  
   const question = reader.getQuestion(id);
   if (!question) {
+    console.warn("invalid question")
     return null;
   }
+
   const maxMark = question.maxMark;
   const markPoints = question.markPoints;
 
