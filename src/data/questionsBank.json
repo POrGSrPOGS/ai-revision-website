@@ -1,249 +1,352 @@
 [
   {
-    "id": "q1",
+    "id": "q21",
     "format": {
       "name": "GapFill",
-      "sentence": "The Earth revolves around the {gap-3}"
-    },
-    "text": "Fill in the gaps",
-    "maxMark": 1,
-    "markPoints": [["Sun"]],
-    "subject": "General Knowledge",
-    "topic": "Space"
-  },
-  {
-    "id": "q2",
-    "format": {
-      "name": "MultipleChoice",
-      "options": ["Pacific", "Atlantic", "Indian", "Arctic"]
-    },
-    "text": "Which is the largest ocean on Earth?",
-    "maxMark": 1,
-    "markPoints": [["Pacific"]],
-    "subject": "Geography",
-    "topic": "Oceans"
-  },
-  {
-    "id": "q3",
-    "format": {
-      "name": "GapFill",
-      "sentence": "Water freezes at {gap-1} °C"
-    },
-    "text": "Fill in the gaps",
-    "maxMark": 1,
-    "markPoints": [["0", "zero"]],
-    "subject": "Science",
-    "topic": "States of Matter"
-  },
-  {
-    "id": "q4",
-    "format": {
-      "name": "ShortAnswer"
-    },
-    "text": "Name a primary colour",
-    "maxMark": 1,
-    "markPoints": [["red", "blue", "yellow"]],
-    "subject": "Art",
-    "topic": "Colours"
-  },
-  {
-    "id": "q5",
-    "format": {
-      "name": "MultipleChoice",
-      "options": ["Mars", "Venus", "Jupiter", "Mercury"]
-    },
-    "text": "Which planet is known as the Red Planet?",
-    "maxMark": 1,
-    "markPoints": [["Mars"]],
-    "subject": "Science",
-    "topic": "Planets"
-  },
-  {
-    "id": "q6",
-    "format": {
-      "name": "GapFill",
-      "sentence": "A week has {gap-1} days"
-    },
-    "text": "Fill in the gaps",
-    "maxMark": 1,
-    "markPoints": [["7", "seven"]],
-    "subject": "General Knowledge",
-    "topic": "Time"
-  },
-  {
-    "id": "q7",
-    "format": {
-      "name": "MultipleChoice",
-      "options": ["Paris", "London", "Rome", "Madrid"]
-    },
-    "text": "What is the capital of France?",
-    "maxMark": 1,
-    "markPoints": [["Paris"]],
-    "subject": "Geography",
-    "topic": "Capitals"
-  },
-  {
-    "id": "q8",
-    "format": {
-      "name": "GapFill",
-      "sentence": "Plants absorb {gap-6} {gap-7} from the atmosphere"
+      "sentence": "The closest star to the Sun (other than the Sun itself) is {gap-7} {gap-8}"
     },
     "text": "Fill in the gaps",
     "maxMark": 2,
-    "markPoints": [["carbon"], ["dioxide"]],
-    "subject": "Science",
-    "topic": "Plants"
+    "markPoints": [["Proxima"], ["Centauri"]],
+    "subject": "Space",
+    "topic": "Stars"
   },
   {
-    "id": "q9",
+    "id": "q22",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["Saturn", "Jupiter", "Uranus", "Neptune"]
+    },
+    "text": "Which planet currently has the most confirmed moons in our solar system?",
+    "maxMark": 1,
+    "markPoints": [["Saturn"]],
+    "subject": "Space",
+    "topic": "Moons"
+  },
+  {
+    "id": "q23",
     "format": {
       "name": "ShortAnswer"
     },
-    "text": "What are the first three months of the year?",
-    "maxMark": 3,
-    "markPoints": [["January"], ["February"], ["March"]],
-    "subject": "General Knowledge",
-    "topic": "Calendar"
-  },
-  {
-    "id": "q10",
-    "format": {
-      "name": "MultipleChoice",
-      "options": ["Oxygen", "Hydrogen", "Nitrogen", "Carbon Dioxide"]
-    },
-    "text": "Which gas do humans breathe in to survive?",
-    "maxMark": 1,
-    "markPoints": [["Oxygen"]],
-    "subject": "Science",
-    "topic": "Human Body"
-  },
-  {
-    "id": "q11",
-    "format": {
-      "name": "GapFill",
-      "sentence": "The fastest land animal is the {gap-7}"
-    },
-    "text": "Fill in the gaps",
-    "maxMark": 1,
-    "markPoints": [["cheetah"]],
-    "subject": "Biology",
-    "topic": "Animals"
-  },
-  {
-    "id": "q12",
-    "format": {
-      "name": "MultipleChoice",
-      "options": ["Shakespeare", "Dickens", "Tolkien", "Rowling"]
-    },
-    "text": "Who wrote 'Romeo and Juliet'?",
-    "maxMark": 1,
-    "markPoints": [["Shakespeare"]],
-    "subject": "Literature",
-    "topic": "Authors"
-  },
-  {
-    "id": "q13",
-    "format": {
-      "name": "GapFill",
-      "sentence": "There are {gap-2} hours in one day"
-    },
-    "text": "Fill in the gaps",
-    "maxMark": 1,
-    "markPoints": [["24", "twenty-four"]],
-    "subject": "General Knowledge",
-    "topic": "Time"
-  },
-  {
-    "id": "q14",
-    "format": {
-      "name": "ShortAnswer"
-    },
-    "text": "Name the four seasons",
+    "text": "Name the four inner (terrestrial) planets of the solar system.",
     "maxMark": 4,
-    "markPoints": [["Spring"], ["Summer"], ["Autumn", "Fall"], ["Winter"]],
-    "subject": "General Knowledge",
-    "topic": "Seasons"
+    "markPoints": [["Mercury"], ["Venus"], ["Earth"], ["Mars"]],
+    "subject": "Space",
+    "topic": "Planets"
   },
   {
-    "id": "q15",
-    "format": {
-      "name": "MultipleChoice",
-      "options": ["Dog", "Cat", "Dolphin", "Shark"]
-    },
-    "text": "Which of these is a mammal that lives in the ocean?",
-    "maxMark": 1,
-    "markPoints": [["Dolphin"]],
-    "subject": "Biology",
-    "topic": "Animals"
-  },
-  {
-    "id": "q16",
+    "id": "q24",
     "format": {
       "name": "GapFill",
-      "sentence": "The largest continent is {gap-4}"
+      "sentence": "Earth takes approximately {gap-3} days to complete one orbit around the Sun"
     },
     "text": "Fill in the gaps",
     "maxMark": 1,
-    "markPoints": [["Asia"]],
-    "subject": "Geography",
-    "topic": "Continents"
+    "markPoints": [["365"]],
+    "subject": "Space",
+    "topic": "Orbits"
   },
   {
-    "id": "q17",
+    "id": "q25",
     "format": {
       "name": "MultipleChoice",
-      "options": ["100", "90", "180", "360"]
+      "options": ["Apollo 11", "Apollo 13", "Gemini 8", "Voyager 1"]
     },
-    "text": "How many degrees are in a right angle?",
+    "text": "Which mission was the first to land humans on the Moon?",
     "maxMark": 1,
-    "markPoints": [["90"]],
-    "subject": "Mathematics",
-    "topic": "Geometry"
+    "markPoints": [["Apollo 11"]],
+    "subject": "Space",
+    "topic": "Moon Landing"
   },
   {
-    "id": "q18",
-    "format": {
-      "name": "GapFill",
-      "sentence": "The opposite of north is {gap-5}"
-    },
-    "text": "Fill in the gaps",
-    "maxMark": 1,
-    "markPoints": [["south"]],
-    "subject": "Geography",
-    "topic": "Directions"
-  },
-  {
-    "id": "q19",
+    "id": "q26",
     "format": {
       "name": "ShortAnswer"
     },
-    "text": "Name a planet in our Solar System",
-    "maxMark": 1,
-    "markPoints": [
-      [
-        "Mercury",
-        "Venus",
-        "Earth",
-        "Mars",
-        "Jupiter",
-        "Saturn",
-        "Uranus",
-        "Neptune"
-      ]
-    ],
-    "subject": "Science",
-    "topic": "Space"
+    "text": "Name the two elements that make up the vast majority of the Sun's mass.",
+    "maxMark": 2,
+    "markPoints": [["Hydrogen"], ["Helium"]],
+    "subject": "Space",
+    "topic": "The Sun"
   },
   {
-    "id": "q20",
+    "id": "q27",
+    "format": {
+      "name": "GapFill",
+      "sentence": "The first man-made object to orbit Earth, launched in 1957, was called {gap-7}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "markPoints": [["Sputnik"]],
+    "subject": "Space",
+    "topic": "Space Missions"
+  },
+  {
+    "id": "q28",
     "format": {
       "name": "MultipleChoice",
-      "options": ["Triangle", "Square", "Circle", "Pentagon"]
+      "options": ["Perseverance", "Curiosity", "Opportunity", "Spirit"]
     },
-    "text": "Which shape has exactly three sides?",
+    "text": "Which NASA rover landed on Mars in 2021 to search for signs of ancient microbial life?",
     "maxMark": 1,
-    "markPoints": [["Triangle"]],
-    "subject": "Mathematics",
-    "topic": "Shapes"
+    "markPoints": [["Perseverance"]],
+    "subject": "Space",
+    "topic": "Mars Exploration"
+  },
+  {
+    "id": "q29",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Name the two astronauts who first walked on the Moon during the Apollo 11 mission.",
+    "maxMark": 2,
+    "markPoints": [["Neil Armstrong"], ["Buzz Aldrin"]],
+    "subject": "Space",
+    "topic": "Moon Landing"
+  },
+  {
+    "id": "q30",
+    "format": {
+      "name": "GapFill",
+      "sentence": "The galaxy that contains our Solar System is called the {gap-5} {gap-3}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 2,
+    "markPoints": [["Milky"], ["Way"]],
+    "subject": "Space",
+    "topic": "Galaxies"
+  },
+  {
+    "id": "q31",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["Titan", "Enceladus", "Europa", "Mimas"]
+    },
+    "text": "Which of these moons does NOT orbit Saturn?",
+    "maxMark": 1,
+    "markPoints": [["Europa"]],
+    "subject": "Space",
+    "topic": "Moons"
+  },
+  {
+    "id": "q32",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Name the four outer (gas and ice giant) planets of the solar system.",
+    "maxMark": 4,
+    "markPoints": [["Jupiter"], ["Saturn"], ["Uranus"], ["Neptune"]],
+    "subject": "Space",
+    "topic": "Planets"
+  },
+  {
+    "id": "q33",
+    "format": {
+      "name": "GapFill",
+      "sentence": "The largest moon in the solar system, which orbits Jupiter, is called {gap-8}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "markPoints": [["Ganymede"]],
+    "subject": "Space",
+    "topic": "Moons"
+  },
+  {
+    "id": "q34",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["465°C", "100°C", "-50°C", "20°C"]
+    },
+    "text": "Roughly what is the average surface temperature on Venus?",
+    "maxMark": 1,
+    "markPoints": [["465°C"]],
+    "subject": "Space",
+    "topic": "Planets"
+  },
+  {
+    "id": "q35",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "What is the name of the force that keeps planets in orbit around the Sun?",
+    "maxMark": 1,
+    "markPoints": [["Gravity"]],
+    "subject": "Space",
+    "topic": "Physics of Space"
+  },
+  {
+    "id": "q36",
+    "format": {
+      "name": "GapFill",
+      "sentence": "The first human to travel into space was the Soviet cosmonaut {gap-4} {gap-7}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 2,
+    "markPoints": [["Yuri"], ["Gagarin"]],
+    "subject": "Space",
+    "topic": "Space Pioneers"
+  },
+  {
+    "id": "q37",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["Apollo 1", "Apollo 13", "Skylab", "Apollo 17"]
+    },
+    "text": "Which of these was NOT part of the Apollo program?",
+    "maxMark": 1,
+    "markPoints": [["Skylab"]],
+    "subject": "Space",
+    "topic": "Space Missions"
+  },
+  {
+    "id": "q38",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Name the galaxy that is on a collision course with the Milky Way, expected to merge in billions of years.",
+    "maxMark": 1,
+    "markPoints": [["Andromeda", "Andromeda Galaxy"]],
+    "subject": "Space",
+    "topic": "Galaxies"
+  },
+  {
+    "id": "q39",
+    "format": {
+      "name": "GapFill",
+      "sentence": "A day on Venus is longer than its {gap-4}, because Venus rotates so slowly on its axis"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "markPoints": [["year"]],
+    "subject": "Space",
+    "topic": "Planets"
+  },
+  {
+    "id": "q40",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["Escape velocity", "Terminal velocity", "Orbital velocity", "Angular velocity"]
+    },
+    "text": "What is the term for the minimum speed an object needs to break free of a planet's gravity without further propulsion?",
+    "maxMark": 1,
+    "markPoints": [["Escape velocity"]],
+    "subject": "Space",
+    "topic": "Physics of Space"
+  },
+  {
+    "id": "q41",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Name the space station that has been continuously inhabited since 2000, jointly operated by multiple countries.",
+    "maxMark": 1,
+    "markPoints": [["International Space Station", "ISS"]],
+    "subject": "Space",
+    "topic": "Space Stations"
+  },
+  {
+    "id": "q42",
+    "format": {
+      "name": "GapFill",
+      "sentence": "NASA's space telescope launched in 2021 to succeed Hubble was named after former administrator James {gap-4}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "markPoints": [["Webb"]],
+    "subject": "Space",
+    "topic": "Space Telescopes"
+  },
+  {
+    "id": "q43",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["Jupiter", "Saturn", "Mars", "Neptune"]
+    },
+    "text": "Which planet is home to a giant storm known as the 'Great Red Spot'?",
+    "maxMark": 1,
+    "markPoints": [["Jupiter"]],
+    "subject": "Space",
+    "topic": "Planets"
+  },
+  {
+    "id": "q44",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Besides ordinary matter, name the two mysterious components thought to make up most of the universe's mass-energy.",
+    "maxMark": 2,
+    "markPoints": [["Dark matter"], ["Dark energy"]],
+    "subject": "Space",
+    "topic": "Cosmology"
+  },
+  {
+    "id": "q45",
+    "format": {
+      "name": "GapFill",
+      "sentence": "One of Mars's two small moons is named {gap-6}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 1,
+    "markPoints": [["Phobos", "Deimos"]],
+    "subject": "Space",
+    "topic": "Moons"
+  },
+  {
+    "id": "q46",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["Supernova", "Nova", "Pulsar", "Quasar"]
+    },
+    "text": "What do astronomers call a massive star that explodes at the end of its life?",
+    "maxMark": 1,
+    "markPoints": [["Supernova"]],
+    "subject": "Space",
+    "topic": "Stars"
+  },
+  {
+    "id": "q47",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Name the first woman to travel into space.",
+    "maxMark": 1,
+    "markPoints": [["Valentina Tereshkova"]],
+    "subject": "Space",
+    "topic": "Space Pioneers"
+  },
+  {
+    "id": "q48",
+    "format": {
+      "name": "GapFill",
+      "sentence": "The distant, icy region beyond Neptune that contains dwarf planets like Pluto is called the {gap-6} {gap-4}"
+    },
+    "text": "Fill in the gaps",
+    "maxMark": 2,
+    "markPoints": [["Kuiper"], ["Belt"]],
+    "subject": "Space",
+    "topic": "Solar System"
+  },
+  {
+    "id": "q49",
+    "format": {
+      "name": "MultipleChoice",
+      "options": ["Roscosmos", "ESA", "ISRO", "JAXA"]
+    },
+    "text": "Which of these space agencies is based in Russia?",
+    "maxMark": 1,
+    "markPoints": [["Roscosmos"]],
+    "subject": "Space",
+    "topic": "Space Agencies"
+  },
+  {
+    "id": "q50",
+    "format": {
+      "name": "ShortAnswer"
+    },
+    "text": "Besides Saturn, name three planets in our solar system that also have ring systems.",
+    "maxMark": 3,
+    "markPoints": [["Jupiter"], ["Uranus"], ["Neptune"]],
+    "subject": "Space",
+    "topic": "Planets"
   }
 ]
