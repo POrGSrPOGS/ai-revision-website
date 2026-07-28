@@ -11,5 +11,7 @@
 
 ## NOTE FOR STARDANCE REVIEWERS: This project is designed to give the best experience for desktop/laptop users as small screens can hinder the website's full experience. In order to ensure fair voting I ask you to only review it if you satisfy the requirements.
 
+## DO NOT EXPECT RATIOS TO UPDATE INSTANTLY. Ratios are adapted based on improvements in score from previous answers, if you havent answered it before OR answered it before with a different mark, the ratios will not update.
+
 
 ### AI Declaration: Although this project wasn't 'vibecoded', LLM's were used in speeding up the production of this website. Multiple models including Copilot, Claude and ChatGPT, were used for debugging issues, writing quick util functions (Such as in the ratio optimiser) and helping me decide a structure for the project. As of now, Hackatime estimates this project as having used AI in ~10% of the time spent developing (50h 30m : 5h)
