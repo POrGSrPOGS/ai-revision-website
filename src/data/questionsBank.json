@@ -53,8 +53,8 @@
       "options": ["Apollo 11", "Apollo 13", "Gemini 8", "Voyager 1"]
     },
     "text": "Which mission was the first to land humans on the Moon?",
-    "maxMark": 1,
-    "markPoints": [["Apollo 11"]],
+    "maxMark": 2,
+    "markPoints": [["Apollo"], ["11"]],
     "subject": "Space",
     "topic": "Moon Landing"
   },
@@ -99,8 +99,8 @@
       "name": "ShortAnswer"
     },
     "text": "Name the two astronauts who first walked on the Moon during the Apollo 11 mission.",
-    "maxMark": 2,
-    "markPoints": [["Neil Armstrong"], ["Buzz Aldrin"]],
+    "maxMark": 4,
+    "markPoints": [["Neil"], ["Armstrong"], ["Buzz"], ["Aldrin"]],
     "subject": "Space",
     "topic": "Moon Landing"
   },
@@ -205,7 +205,7 @@
     },
     "text": "Name the galaxy that is on a collision course with the Milky Way, expected to merge in billions of years.",
     "maxMark": 1,
-    "markPoints": [["Andromeda", "Andromeda Galaxy"]],
+    "markPoints": [["Andromeda"]],
     "subject": "Space",
     "topic": "Galaxies"
   },
@@ -228,8 +228,8 @@
       "options": ["Escape velocity", "Terminal velocity", "Orbital velocity", "Angular velocity"]
     },
     "text": "What is the term for the minimum speed an object needs to break free of a planet's gravity without further propulsion?",
-    "maxMark": 1,
-    "markPoints": [["Escape velocity"]],
+    "maxMark": 2,
+    "markPoints": [["Escape"], ["velocity"]],
     "subject": "Space",
     "topic": "Physics of Space"
   },
@@ -239,8 +239,8 @@
       "name": "ShortAnswer"
     },
     "text": "Name the space station that has been continuously inhabited since 2000, jointly operated by multiple countries.",
-    "maxMark": 1,
-    "markPoints": [["International Space Station", "ISS"]],
+    "maxMark": 3,
+    "markPoints": [["International"], ["Space"], ["Station"]],
     "subject": "Space",
     "topic": "Space Stations"
   },
@@ -274,8 +274,8 @@
       "name": "ShortAnswer"
     },
     "text": "Besides ordinary matter, name the two mysterious components thought to make up most of the universe's mass-energy.",
-    "maxMark": 2,
-    "markPoints": [["Dark matter"], ["Dark energy"]],
+    "maxMark": 4,
+    "markPoints": [["Dark"], ["matter"], ["Dark"], ["energy"]],
     "subject": "Space",
     "topic": "Cosmology"
   },
@@ -309,8 +309,8 @@
       "name": "ShortAnswer"
     },
     "text": "Name the first woman to travel into space.",
-    "maxMark": 1,
-    "markPoints": [["Valentina Tereshkova"]],
+    "maxMark": 2,
+    "markPoints": [["Valentina"], ["Tereshkova"]],
     "subject": "Space",
     "topic": "Space Pioneers"
   },
