@@ -1,8 +1,10 @@
 # Title: UpRevise (An AI revision website)
 
+## Description TLDR: A revision website that adapts to how a user learns to improve studying efficiency
+
 ## Description: My revision website uses AI to personalise the types of questions users are prompted with to attempt to increase the improvements students can make when revising. I started this project because I found that some revision methods would fail to help me as much as others. This meant I would waste hours of revision, revising in a way that just wasn't for me. My idea for this prototype was to use a custom script to optimise the ratios of question formats in order to find the best, most effective, combination of question formats (short answers, multiple choice and fill in the gap) because there isn't a 'right' question format for you, it's about weighted variation.
 
-## TLDR: A revision website that adapts to how a user learns to improve studying efficiency
+
 
 # ![Ratio Example](assets/exampleRatio.png)
 
@@ -13,5 +15,6 @@
 
 ## DO NOT EXPECT RATIOS TO UPDATE INSTANTLY. Ratios are adapted based on improvements in score from previous answers, if you havent answered it before OR answered it before with a different mark, the ratios will not update.
 
+## To run the project locally you would need to use React and Node to set it up and add .env file in the project root including SESSION_SECRET and PORT
 
 ### AI Declaration: Although this project wasn't 'vibecoded', LLM's were used in speeding up the production of this website. Multiple models including Copilot, Claude and ChatGPT, were used for debugging issues, writing quick util functions (Such as in the ratio optimiser) and helping me decide a structure for the project. As of now, Hackatime estimates this project as having used AI in ~10% of the time spent developing (50h 30m : 5h)
